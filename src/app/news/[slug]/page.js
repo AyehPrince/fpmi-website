@@ -2,6 +2,8 @@ import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
 import NewsDetail from "@/components/sections/NewsDetail"
 
+export const runtime = "edge"
+
 export default async function NewsPostPage({ params }) {
   const { slug } = await params
   return (
