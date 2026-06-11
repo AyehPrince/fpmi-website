@@ -41,7 +41,7 @@ export default function Gallery() {
   }
 
   return (
-    <section className="py-24 bg-gray-50">
+  <section className="py-24" style={{ backgroundColor: "#0a0f5c" }}>
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.div
@@ -52,12 +52,12 @@ export default function Gallery() {
           className="text-center mb-16"
         >
           <span className="text-[#f5c518] font-semibold text-sm uppercase tracking-widest">Life at FPMI</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#0a0f5c] mt-3 mb-4">
-            Gallery
-          </h2>
-          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            A glimpse into the vibrant learning environment at Flash Prime Media Institute.
-          </p>
+<h2 className="text-4xl md:text-5xl font-bold text-white mt-3 mb-4">
+  Gallery
+</h2>
+<p className="text-white/60 text-lg max-w-2xl mx-auto">
+  A glimpse into the vibrant learning environment at Flash Prime Media Institute.
+</p>
         </motion.div>
 
         <div className="flex flex-wrap gap-3 mb-10 justify-center">
@@ -66,10 +66,10 @@ export default function Gallery() {
               key={cat}
               onClick={() => handleCategory(cat)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                activeCategory === cat
-                  ? "bg-[#0a0f5c] text-white"
-                  : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50"
-              }`}
+  activeCategory === cat
+    ? "bg-[#f5c518] text-[#0a0f5c]"
+    : "bg-white/10 border border-white/20 text-white hover:bg-white/20"
+}`}
             >
               {cat}
             </button>
@@ -81,7 +81,7 @@ export default function Gallery() {
         ) : filtered.length === 0 ? (
           <div className="text-center py-24">
             <ImageIcon size={48} className="text-gray-200 mx-auto mb-4" />
-            <p className="text-gray-400">No photos yet — check back soon!</p>
+            <p className="text-white/50">No photos yet — check back soon!</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
