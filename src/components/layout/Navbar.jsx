@@ -30,8 +30,16 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      transparent ? "bg-transparent py-5" : "bg-white shadow-md py-3"
-    }`}>
+  transparent
+    ? "bg-transparent py-5 translate-y-0"
+    : "bg-white shadow-md py-3 translate-y-0"
+}`}
+style={{
+  transform: scrolled ? "translateY(0)" : "translateY(0)",
+  backdropFilter: scrolled ? "blur(10px)" : "none",
+  WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
+  backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "transparent",
+}}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
 
         <Link href="/" className="flex items-center gap-3">
@@ -53,11 +61,14 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-xs lg:text-sm font-medium transition-colors hover:text-[#f5c518] ${
-                transparent ? "text-white" : "text-[#0a0f5c]"
-              } ${pathname === link.href ? "text-[#f5c518]" : ""}`}
+              className={`text-xs lg:text-sm font-medium transition-colors hover:text-[#f5c518] relative ${
+  transparent ? "text-white" : "text-[#0a0f5c]"
+} ${pathname === link.href ? "text-[#f5c518]" : ""}`}
             >
               {link.label}
+  <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#f5c518] transition-all duration-300 ${
+    pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+  }`} />
             </Link>
           ))}
         </div>

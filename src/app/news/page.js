@@ -4,7 +4,7 @@ import NewsList from "@/components/sections/NewsList"
 
 export const metadata = {
   title: "News & Updates | Flash Prime Media Institute",
-  description: "Latest news, achievements and updates from Flash Prime Media Institute.",
+  description: "Latest news, achievements and announcements from Flash Prime Media Institute.",
 }
 
 export default function NewsPage() {

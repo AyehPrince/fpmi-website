@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar"
 import Hero from "@/components/sections/Hero"
+import MarqueeStrip from "@/components/sections/MarqueeStrip"
 import About from "@/components/sections/About"
 import ProgramsPreview from "@/components/sections/ProgramsPreview"
 import HowToApply from "@/components/sections/HowToApply"
@@ -12,6 +13,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <MarqueeStrip />
       <About />
       <ProgramsPreview />
       <HowToApply />
