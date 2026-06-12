@@ -48,12 +48,12 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[#f5c518] ${
+              className={`text-xs lg:text-sm font-medium transition-colors hover:text-[#f5c518] ${
                 transparent ? "text-white" : "text-[#0a0f5c]"
               } ${pathname === link.href ? "text-[#f5c518]" : ""}`}
             >
@@ -62,12 +62,12 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-2">
           <Link
               href="https://flashprime-saas.vercel.app/"
   target="_blank"
   rel="noopener noreferrer"
-  className={`text-sm font-medium px-4 py-2 rounded-lg border transition-colors ${
+  className={`text-xs lg:text-sm font-medium px-3 lg:px-4 py-2 rounded-lg border transition-colors ${
     transparent
       ? "border-white text-white hover:bg-white hover:text-[#0a0f5c]"
       : "border-[#0a0f5c] text-[#0a0f5c] hover:bg-[#0a0f5c] hover:text-white"
@@ -77,22 +77,22 @@ export default function Navbar() {
           </Link>
           <Link
             href="/apply"
-            className="text-sm font-semibold px-4 py-2 rounded-lg bg-[#f5c518] text-[#0a0f5c] hover:bg-yellow-400 transition-colors"
+    className="text-xs lg:text-sm font-semibold px-3 lg:px-4 py-2 rounded-lg bg-[#f5c518] text-[#0a0f5c] hover:bg-yellow-400 transition-colors"
           >
             Apply Now
           </Link>
         </div>
 
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className={`md:hidden transition-colors ${transparent ? "text-white" : "text-[#0a0f5c]"}`}
-        >
+  onClick={() => setMenuOpen(!menuOpen)}
+  className={`lg:hidden transition-colors ${transparent ? "text-white" : "text-[#0a0f5c]"}`}
+>
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
+  <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-3">
           {navLinks.map((link) => (
             <Link
               key={link.href}

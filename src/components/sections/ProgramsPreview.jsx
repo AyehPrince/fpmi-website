@@ -75,7 +75,14 @@ export default function ProgramsPreview() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <Link href={`/programs/${program.slug}`} className={`border rounded-2xl p-6 hover:shadow-md transition-all hover:-translate-y-1 cursor-pointer group ${program.color} block`}>
+              <Link href={`/programs/${program.slug}`} className={`border rounded-2xl p-6 transition-all hover:-translate-y-2 cursor-pointer group ${program.color} block relative overflow-hidden hover:shadow-xl hover:shadow-black/10`}>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+  style={{
+    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
+    backgroundSize: "200% 100%",
+    animation: "shimmer 0.8s ease forwards",
+  }}
+/>
                 <div className="text-4xl mb-4">{program.icon}</div>
                 <span className="bg-[#0a0f5c] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
                   {program.level}
