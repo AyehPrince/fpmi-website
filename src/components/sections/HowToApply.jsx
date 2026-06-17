@@ -8,7 +8,7 @@ const steps = [
     number: "01",
     icon: CreditCard,
     title: "Pay Registration Fee",
-    description: "Pay the GH¢ 100 registration fee online via Mobile Money or visit the school in person to pay at the front desk.",
+    description: "Pay the GH¢ 150 registration fee online via Mobile Money or visit the school in person to pay at the front desk.",
     color: "#f5c518",
   },
   {
