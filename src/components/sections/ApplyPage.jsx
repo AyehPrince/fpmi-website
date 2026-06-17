@@ -103,7 +103,7 @@ async function fetchCourses() {
     const handler = PaystackPop.setup({
       key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
       email: basicInfo.email || `${basicInfo.phone}@fpmi.edu.gh`,
-      amount: 10000,
+      amount: 15000,
       currency: "GHS",
       ref: `FPMI-${Date.now()}`,
       metadata: {
@@ -231,7 +231,7 @@ async function fetchCourses() {
 
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
                 <p className="text-amber-700 text-sm font-semibold mb-1">💳 Payment Required</p>
-                <p className="text-amber-600 text-sm">A non-refundable registration fee of <strong>GH¢ 100</strong> is required to access the application form. This prevents spam and ensures serious applicants only.</p>
+                <p className="text-amber-600 text-sm">A non-refundable registration fee of <strong>GH¢ 150</strong> is required to access the application form. This prevents spam and ensures serious applicants only.</p>
               </div>
 
               <form onSubmit={handleProceedToPayment} className="space-y-4">
@@ -320,7 +320,7 @@ async function fetchCourses() {
                 </div>
                 <div className="flex justify-between items-center pt-3 border-t border-gray-200">
                   <span className="text-gray-700 font-bold">Registration Fee</span>
-                  <span className="text-[#0a0f5c] font-bold text-lg">GH¢ 100</span>
+                  <span className="text-[#0a0f5c] font-bold text-lg">GH¢ 150</span>
                 </div>
               </div>
 
@@ -330,7 +330,7 @@ async function fetchCourses() {
 
               <button onClick={handlePayWithPaystack} disabled={loading} className="w-full bg-[#f5c518] hover:bg-yellow-400 text-[#0a0f5c] font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50">
                 <CreditCard size={20} />
-                {loading ? "Processing..." : "Pay GH¢ 100 Now"}
+                {loading ? "Processing..." : "Pay GH¢ 150 Now"}
               </button>
 
               <button onClick={() => setStep("info")} className="w-full mt-3 border border-gray-200 text-gray-500 hover:bg-gray-50 font-medium px-6 py-3 rounded-xl transition-all text-sm">
