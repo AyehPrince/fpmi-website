@@ -10,7 +10,7 @@ const programs = [
   "Film & Video Editing",
   "Fashion Design",
   "Cosmetology",
-  "Care Giving",
+  "Catering",
 ]
 
 const quickLinks = [

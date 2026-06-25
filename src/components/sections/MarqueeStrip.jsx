@@ -8,7 +8,7 @@ const items = [
   "🎬 Film & Video Editing",
   "👗 Fashion Design",
   "💄 Cosmetology",
-  "🏥 Care Giving",
+  "🍽️ Catering",
   "🎓 100% Job Assurance",
   "⭐ 15+ Years of Excellence",
   "🏆 1000+ Graduates",

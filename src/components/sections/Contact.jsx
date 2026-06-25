@@ -184,7 +184,7 @@ export default function Contact() {
                       <option>Film & Video Editing</option>
                       <option>Fashion Design</option>
                       <option>Cosmetology</option>
-                      <option>Care Giving</option>
+                      <option>Catering</option>
                     </select>
                   </div>
                   <div>
