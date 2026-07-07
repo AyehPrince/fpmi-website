@@ -10,7 +10,7 @@ export const metadata = {
   description: "Ghana's premier media and creative arts institute in Accra. Study Broadcast Journalism, Film, Graphic Design, Fashion Design, Cosmetology and more.",
   keywords: "media school Ghana, broadcast journalism Accra, film school Ghana, FPMI, Flash Prime Media Institute, fashion design school Accra, graphic design Ghana",
   verification: {
-    google: "0CZaai3hRJH3KPI",
+    google: "0CZaai3hRJH3KPb3qHARKetuyJJeMalRE5N-QmBoaOU",
   },
   openGraph: {
     title: "Flash Prime Media Institute | Easy Way To Excellence",
