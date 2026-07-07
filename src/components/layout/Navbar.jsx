@@ -75,7 +75,7 @@ style={{
 
         <div className="hidden lg:flex items-center gap-2">
           <Link
-              href="https://flashprime-saas.vercel.app/student-login"
+              href="https://admin.flashmediainstitute.com/student-login"
   target="_blank"
   rel="noopener noreferrer"
   className={`text-xs lg:text-sm font-medium px-3 lg:px-4 py-2 rounded-lg border transition-colors ${
