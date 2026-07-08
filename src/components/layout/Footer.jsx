@@ -101,7 +101,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={16} className="text-[#f5c518] flex-shrink-0" />
-                <p className="text-white/60 text-sm">info@flashprimemediainstitute.com</p>
+                <p className="text-white/60 text-sm">info@flashmediainstitute.com</p>
               </div>
             </div>
 

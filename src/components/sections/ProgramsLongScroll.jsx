@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Clock, Award, CheckCircle, ChevronRight } from "lucide-react"
 import { programs } from "@/data/programs"
 
@@ -117,22 +118,52 @@ function ProgramCard({ program, index }) {
             style={{ backgroundColor: program.accentColor }}
           />
 
+          {/* Image banner */}
+          {program.image && (
+            <div className="relative w-full h-72 overflow-hidden">
+              <Image
+                src={program.image}
+                alt={program.name}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 800px"
+              />
+              {/* Gradient overlay so text is readable if needed */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              {/* Level badge over image */}
+              <div className="absolute bottom-3 left-4 flex items-center gap-2">
+                <span
+                  className="text-[10px] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full backdrop-blur-sm"
+                  style={{ backgroundColor: `${program.accentColor}cc`, color: "#fff" }}
+                >
+                  {program.level}
+                </span>
+                <span className="flex items-center gap-1 text-[11px] text-white/90 font-medium backdrop-blur-sm bg-black/20 px-2 py-1 rounded-full">
+                  <Clock size={10} />
+                  {program.duration}
+                </span>
+              </div>
+            </div>
+          )}
+
           <div className="relative p-7 md:p-9">
-            {/* Header row */}
+            {/* Header row — hide badges if image is present since they're on the image */}
             <div className="flex items-start justify-between gap-4 mb-6">
               <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span
-                    className="text-[10px] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
-                    style={{ backgroundColor: `${program.accentColor}12`, color: program.accentColor }}
-                  >
-                    {program.level}
-                  </span>
-                  <span className="flex items-center gap-1 text-[11px] text-gray-400 font-medium">
-                    <Clock size={10} />
-                    {program.duration}
-                  </span>
-                </div>
+                {!program.image && (
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span
+                      className="text-[10px] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
+                      style={{ backgroundColor: `${program.accentColor}12`, color: program.accentColor }}
+                    >
+                      {program.level}
+                    </span>
+                    <span className="flex items-center gap-1 text-[11px] text-gray-400 font-medium">
+                      <Clock size={10} />
+                      {program.duration}
+                    </span>
+                  </div>
+                )}
                 <h3
                   className="text-2xl md:text-3xl font-black tracking-tight leading-tight"
                   style={{ color: "#0a0f5c", letterSpacing: "-0.02em" }}

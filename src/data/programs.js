@@ -1,6 +1,7 @@
 export const programs = [
   {
     slug: "broadcast-journalism",
+    image: "/programs/broadcast-journalism.jpg",
     name: "Broadcast Journalism",
     duration: "2 Years",
     level: "Diploma",
@@ -34,6 +35,7 @@ export const programs = [
   },
   {
     slug: "radio-tv-presenting",
+    image: "/programs/radio-tv-presenting.jpg",
     name: "Radio & TV Presenting",
     duration: "1 Year",
     level: "Professional Certificate",
@@ -67,6 +69,7 @@ export const programs = [
   },
   {
     slug: "camera-handling",
+    image: "/programs/camera-handling.jpg",
     name: "Camera Handling",
     duration: "6 Months",
     level: "Certificate",
@@ -100,6 +103,7 @@ export const programs = [
   },
   {
     slug: "graphic-design",
+    image: "/programs/graphic-design.jpg",
     name: "Graphic Design",
     duration: "1 Year",
     level: "Professional Certificate",
@@ -133,6 +137,7 @@ export const programs = [
   },
   {
     slug: "film-video-editing",
+    image: "/programs/film-video-editing.jpg",
     name: "Film & Video Editing",
     duration: "1 Year",
     level: "Professional Certificate",
@@ -166,6 +171,7 @@ export const programs = [
   },
   {
     slug: "fashion-design",
+    image: "/programs/fashion-design.jpg",
     name: "Fashion Design",
     duration: "2 Years",
     level: "Diploma",
@@ -199,6 +205,7 @@ export const programs = [
   },
   {
     slug: "cosmetology",
+    image: "/programs/cosmetology.jpg",
     name: "Cosmetology",
     duration: "1 Year",
     level: "Professional Certificate",
@@ -232,6 +239,7 @@ export const programs = [
   },
   {
   slug: "catering",
+    image: "/programs/catering.jpg",
   name: "Catering",
   duration: "1 Year",
   level: "Professional Certificate",
