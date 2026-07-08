@@ -1,6 +1,6 @@
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
-import Programs from "@/components/sections/Programs"
+import ProgramsLongScroll from "@/components/sections/ProgramsLongScroll"
 
 export const metadata = {
   title: "Programs | Flash Prime Media Institute",
@@ -12,7 +12,7 @@ export default function ProgramsPage() {
     <main>
       <Navbar />
       <div className="pt-24">
-        <Programs />
+        <ProgramsLongScroll />
       </div>
       <Footer />
     </main>
