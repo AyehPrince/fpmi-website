@@ -441,78 +441,125 @@ export default function ProgramsLongScroll() {
       {/* ── FEES ── */}
       <section id="fees" className="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-20">
         <SectionEyebrow>Fee Structure</SectionEyebrow>
-        <h2 className="text-3xl font-black text-[#0a0f5c] mb-2" style={{ letterSpacing: "-0.02em" }}>
-          Transparent Pricing
-        </h2>
-        <p className="text-gray-400 text-sm mb-10 max-w-xl">
-          Fees are payable in cash, cheque or mobile money and must be completed before beginning any course. All fees are non-refundable.
-        </p>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+          <h2 className="text-3xl font-black text-[#0a0f5c]" style={{ letterSpacing: "-0.02em" }}>
+            Transparent Pricing
+          </h2>
+          <p className="text-gray-400 text-sm max-w-sm leading-relaxed">
+            Payable in cash, cheque or mobile money before starting any course. All fees are non-refundable.
+          </p>
+        </div>
 
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6"
+          className="space-y-4"
         >
-          {FEES.map((fee) => (
-            <motion.div
-              key={fee.title}
-              variants={fadeUp}
-              className="group relative rounded-[1.25rem] p-px transition-all duration-500"
-              style={{ background: "linear-gradient(135deg, rgba(10,15,92,0.08), rgba(10,15,92,0.02))" }}
-            >
-              <div
-                className="rounded-[calc(1.25rem-1px)] bg-white overflow-hidden h-full"
-                style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.9)" }}
+          {FEES.map((fee, i) => {
+            const isDark = i === 1
+            return (
+              <motion.div
+                key={fee.title}
+                variants={fadeUp}
+                className="group relative rounded-[1.75rem] p-px transition-all duration-700"
+                style={{
+                  background: isDark
+                    ? "linear-gradient(135deg, rgba(245,197,24,0.3), rgba(245,197,24,0.05))"
+                    : "linear-gradient(135deg, rgba(10,15,92,0.08), rgba(10,15,92,0.01))"
+                }}
               >
-                {/* Top accent */}
-                <div className="h-1" style={{ backgroundColor: fee.accent }} />
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-1">
-                    <span
-                      className="text-[10px] font-black uppercase tracking-[0.18em]"
-                      style={{ color: fee.accent }}
-                    >
-                      {fee.duration}
-                    </span>
-                    <span
-                      className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: `${fee.accent}12`, color: fee.accent }}
-                    >
-                      {fee.tag}
-                    </span>
-                  </div>
-                  <h3
-                    className="font-black text-[#0a0f5c] text-base mb-5 leading-tight"
-                    style={{ letterSpacing: "-0.01em" }}
-                  >
-                    {fee.title}
-                  </h3>
-                  <div className="space-y-3 mb-5">
-                    {fee.items.map((item) => (
-                      <div
-                        key={item.label}
-                        className="flex justify-between items-center text-xs pb-3 last:pb-0"
-                        style={{ borderBottom: "1px solid rgba(10,15,92,0.05)" }}
+                <div
+                  className="rounded-[calc(1.75rem-1px)] overflow-hidden"
+                  style={{
+                    backgroundColor: isDark ? "#0a0f5c" : "#fff",
+                    boxShadow: isDark
+                      ? "inset 0 1px 1px rgba(255,255,255,0.08)"
+                      : "inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 4px rgba(0,0,0,0.03)"
+                  }}
+                >
+                  <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-0 p-7 md:p-8">
+
+                    {/* Left — duration + title */}
+                    <div className="md:w-56 flex-shrink-0">
+                      <span
+                        className="text-[10px] font-black uppercase tracking-[0.22em] mb-2 block"
+                        style={{ color: isDark ? "#f5c518" : fee.accent }}
                       >
-                        <span className="text-gray-400">{item.label}</span>
-                        <span className="font-bold text-[#0a0f5c]">{item.value}</span>
+                        {fee.duration}
+                      </span>
+                      <h3
+                        className="text-xl font-black leading-tight"
+                        style={{
+                          color: isDark ? "#fff" : "#0a0f5c",
+                          letterSpacing: "-0.02em"
+                        }}
+                      >
+                        {fee.title}
+                      </h3>
+                      <span
+                        className="inline-block mt-2 text-[10px] font-bold px-2.5 py-1 rounded-full"
+                        style={{
+                          backgroundColor: isDark ? "rgba(245,197,24,0.15)" : `${fee.accent}12`,
+                          color: isDark ? "#f5c518" : fee.accent
+                        }}
+                      >
+                        {fee.tag}
+                      </span>
+                    </div>
+
+                    {/* Divider */}
+                    <div
+                      className="hidden md:block w-px self-stretch mx-8 flex-shrink-0"
+                      style={{ backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(10,15,92,0.06)" }}
+                    />
+
+                    {/* Middle — fee breakdown */}
+                    <div className="flex-1 grid grid-cols-3 gap-4">
+                      {fee.items.map((item) => (
+                        <div key={item.label}>
+                          <p className="text-[11px] mb-1" style={{ color: isDark ? "rgba(255,255,255,0.4)" : "#aaa" }}>
+                            {item.label}
+                          </p>
+                          <p
+                            className="text-lg font-black"
+                            style={{
+                              color: isDark ? "#f5c518" : "#0a0f5c",
+                              letterSpacing: "-0.02em"
+                            }}
+                          >
+                            {item.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Divider */}
+                    <div
+                      className="hidden md:block w-px self-stretch mx-8 flex-shrink-0"
+                      style={{ backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(10,15,92,0.06)" }}
+                    />
+
+                    {/* Right — note pill */}
+                    <div className="md:w-52 flex-shrink-0">
+                      <div
+                        className="rounded-2xl px-4 py-3 text-xs font-medium leading-relaxed text-center"
+                        style={{
+                          backgroundColor: isDark ? "rgba(245,197,24,0.1)" : `${fee.accent}10`,
+                          color: isDark ? "#f5c518" : fee.accent
+                        }}
+                      >
+                        {fee.note}
                       </div>
-                    ))}
-                  </div>
-                  <div
-                    className="text-[11px] font-medium px-3 py-2 rounded-lg text-center"
-                    style={{ backgroundColor: `${fee.accent}10`, color: fee.accent }}
-                  >
-                    {fee.note}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            )
+          })}
         </motion.div>
-        <p className="text-xs text-gray-400 text-center">All fees subject to change. Contact admissions for the latest pricing.</p>
+        <p className="text-xs text-gray-400 text-center mt-6">All fees subject to change. Contact admissions for the latest pricing.</p>
       </section>
 
       {/* ── CTA ── */}
