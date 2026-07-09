@@ -118,7 +118,9 @@ style={{
           ))}
           <div className="pt-3 border-t border-gray-100 flex flex-col gap-2">
             <Link
-              href="https://flashprime-saas.vercel.app/"
+              href="https://admin.flashmediainstitute.com/student-login"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className="text-sm font-medium px-4 py-2.5 rounded-lg border border-[#0a0f5c] text-[#0a0f5c] text-center"
             >
