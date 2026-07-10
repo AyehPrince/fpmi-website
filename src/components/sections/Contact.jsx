@@ -84,7 +84,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="text-[#0a0f5c] font-bold mb-1">Email</h3>
-                <p className="text-gray-500 text-sm">info@flashprimemediainstitute.com</p>
+                <p className="text-gray-500 text-sm">info@flashmediainstitute.com</p>
               </div>
             </div>
 
