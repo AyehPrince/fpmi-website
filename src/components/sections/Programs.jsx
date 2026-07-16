@@ -23,7 +23,7 @@ const programs = [
     icon: "🎙️",
   },
   {
-    slug: "camera-handling",
+    slug: "media-arts-production",
     name: "Camera Handling",
     duration: "6 Months",
     level: "Certificate",

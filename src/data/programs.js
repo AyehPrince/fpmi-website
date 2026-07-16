@@ -11,9 +11,9 @@ export const programs = [
     shortDescription: "Master the art of news reporting, anchoring and media production for TV and radio.",
     fullDescription: "Our Broadcast Journalism program is designed to produce well-rounded media professionals who are ready to hit the ground running in today's fast-paced news environment. Students gain both the theoretical knowledge and practical skills needed to excel in television and radio journalism. From your first day you'll be working in our professional TV studio, learning how to research, write, present and produce news content to broadcast standards.",
     whatYouLearn: [
+      "Journalism ethics and media law",
       "News writing and reporting for TV and radio",
       "On-camera presenting and anchoring techniques",
-      "Journalism ethics and media law",
       "Interview techniques and source management",
       "News production and programme planning",
       "Digital journalism and social media reporting",
@@ -31,7 +31,7 @@ export const programs = [
       "Media Consultant",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
     slug: "radio-tv-presenting",
@@ -65,7 +65,7 @@ export const programs = [
       "Entertainment Reporter",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
     slug: "camera-handling",
@@ -99,7 +99,7 @@ export const programs = [
       "Freelance Videographer",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
     slug: "graphic-design",
@@ -133,7 +133,7 @@ export const programs = [
       "Creative Director",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
     slug: "film-video-editing",
@@ -167,7 +167,7 @@ export const programs = [
       "Freelance Editor",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
     slug: "fashion-design",
@@ -201,7 +201,7 @@ export const programs = [
       "Fashion Entrepreneur",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
     slug: "cosmetology",
@@ -235,7 +235,7 @@ export const programs = [
       "Film & TV Make-up Artist",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 153, admission: 600, tuition: 1980 },
+    fees: { registration: 150, admission: 700, tuition: 2400 },
   },
   {
   slug: "catering",
@@ -269,6 +269,6 @@ export const programs = [
     "Institutional Food Service Provider",
   ],
   entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-  fees: { registration: 153, admission: 600, tuition: 1980 },
+  fees: { registration: 150, admission: 700, tuition: 2400 },
 },
 ]

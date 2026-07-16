@@ -18,6 +18,7 @@ const NAV_LINKS = [
   { label: "All Programs", href: "#programs" },
   { label: "Admission", href: "#admission" },
   { label: "Fee Structure", href: "#fees" },
+  { label: "Schedule", href: "#schedule" },
   { label: "Apply Now", href: "/apply" },
 ]
 
@@ -562,8 +563,152 @@ export default function ProgramsLongScroll() {
         <p className="text-xs text-gray-400 text-center mt-6">All fees subject to change. Contact admissions for the latest pricing.</p>
       </section>
 
+      {/* ── SCHEDULE ── */}
+      <section id="schedule" className="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          {/* Regular */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+            className="rounded-[1.5rem] p-px"
+            style={{ background: "linear-gradient(135deg, rgba(10,15,92,0.08), rgba(10,15,92,0.01))" }}
+          >
+            <div className="rounded-[calc(1.5rem-1px)] bg-white p-7"
+              style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 4px rgba(0,0,0,0.03)" }}>
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#0a0f5c]/40 mb-1">Weekdays</p>
+              <h3 className="text-xl font-black text-[#0a0f5c] mb-4" style={{ letterSpacing: "-0.02em" }}>Regular School</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between py-3 border-b border-gray-50">
+                  <span className="text-sm text-gray-500">Days</span>
+                  <span className="text-sm font-bold text-[#0a0f5c]">Monday – Friday</span>
+                </div>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-sm text-gray-500">Class Hours</span>
+                  <span className="text-sm font-bold text-[#0a0f5c]">8:00am – 3:00pm</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Weekend */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.32, 0.72, 0, 1] }}
+            className="rounded-[1.5rem] p-px"
+            style={{ background: "linear-gradient(135deg, rgba(245,197,24,0.3), rgba(245,197,24,0.05))" }}
+          >
+            <div className="rounded-[calc(1.5rem-1px)] p-7"
+              style={{ backgroundColor: "#0a0f5c", boxShadow: "inset 0 1px 1px rgba(255,255,255,0.08)" }}>
+              <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#f5c518]/60 mb-1">Weekends</p>
+              <h3 className="text-xl font-black text-white mb-4" style={{ letterSpacing: "-0.02em" }}>Weekend School</h3>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between py-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                  <span className="text-sm text-white/50">Days</span>
+                  <span className="text-sm font-bold text-[#f5c518]">Saturdays</span>
+                </div>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-sm text-white/50">Class Hours</span>
+                  <span className="text-sm font-bold text-[#f5c518]">9:00am – 4:00pm</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ── FOREIGN STUDENTS ── */}
+      <section style={{ backgroundColor: "#0a0f5c" }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+          >
+            <SectionEyebrow>International</SectionEyebrow>
+            <h2 className="text-3xl font-black text-white mb-3" style={{ letterSpacing: "-0.02em" }}>
+              Admission for Foreign Students
+            </h2>
+            <p className="text-white/50 text-sm leading-relaxed mb-10 max-w-xl">
+              Admission and registration fee must be paid upfront before an admission letter is issued.
+              Send us your particulars and we will prepare an invitation letter for you.
+              Suitable hostels are available for your accommodation.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+              {/* Fee table */}
+              <div
+                className="rounded-[1.5rem] p-px"
+                style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02))" }}
+              >
+                <div className="rounded-[calc(1.5rem-1px)] p-7" style={{ backgroundColor: "rgba(255,255,255,0.04)" }}>
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#f5c518]/60 mb-5">Fee Structure</p>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Registration Fee", value: "US$ 30" },
+                      { label: "Admission Fee", value: "US$ 150" },
+                      { label: "Tuition (per semester)", value: "US$ 600" },
+                      { label: "Hostel Fee (per semester)", value: "US$ 400" },
+                    ].map((item) => (
+                      <div key={item.label}
+                        className="flex items-center justify-between py-3"
+                        style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+                      >
+                        <span className="text-sm text-white/50">{item.label}</span>
+                        <span className="text-base font-black text-[#f5c518]" style={{ letterSpacing: "-0.02em" }}>{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Info card */}
+              <div
+                className="rounded-[1.5rem] p-px"
+                style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02))" }}
+              >
+                <div className="rounded-[calc(1.5rem-1px)] p-7 h-full flex flex-col justify-between" style={{ backgroundColor: "rgba(255,255,255,0.04)" }}>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#f5c518]/60 mb-5">What's Included</p>
+                    <ul className="space-y-3">
+                      {[
+                        "Invitation letter prepared upon application",
+                        "Hostel accommodation available on campus",
+                        "Full UK & Ghana accredited certification",
+                        "Internship & attachment after completion",
+                        "National Service placement (Diploma graduates)",
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm text-white/60">
+                          <span className="w-1 h-1 rounded-full bg-[#f5c518] flex-shrink-0 mt-2" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Link
+                    href="/contact"
+                    className="mt-8 flex items-center gap-2 text-sm font-bold text-[#f5c518] hover:opacity-80 transition-opacity"
+                  >
+                    Enquire about international admission
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 pb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

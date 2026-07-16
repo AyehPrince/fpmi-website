@@ -125,15 +125,15 @@ export default function ProgramDetail({ program }) {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">Registration</span>
-                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ {program.fees.registration}</span>
+                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ 150</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">Admission</span>
-                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ {program.fees.admission}</span>
+                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ 700</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">Tuition/Semester</span>
-                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ {program.fees.tuition.toLocaleString()}</span>
+                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ 2,400</span>
                 </div>
                 <div className="py-3">
                   <span className="text-gray-500 text-sm block mb-1">Entry Requirements</span>

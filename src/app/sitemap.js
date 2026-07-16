@@ -19,7 +19,7 @@ export default function sitemap() {
   const programSlugs = [
     "broadcast-journalism",
     "radio-tv-presenting",
-    "camera-handling",
+    "media-arts-production",
     "graphic-design",
     "film-video-editing",
     "fashion-design",

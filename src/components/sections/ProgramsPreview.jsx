@@ -14,30 +14,30 @@ const programs = [
     color: "bg-blue-50 border-blue-100",
   },
   {
-    slug: "graphic-design",
-    name: "Graphic Design",
-    duration: "1 Year",
-    level: "Professional Certificate",
-    description: "Create stunning visuals using industry-standard tools for print and digital media.",
-    icon: "🎨",
-    color: "bg-pink-50 border-pink-100",
-  },
-  {
     slug: "fashion-design",
     name: "Fashion Design",
     duration: "2 Years",
     level: "Diploma",
     description: "Explore fashion illustration, garment construction and design for the modern industry.",
     icon: "👗",
+    color: "bg-pink-50 border-pink-100",
+  },
+  {
+    slug: "media-arts-production",
+    name: "Media Arts Production",
+    duration: "1 Year",
+    level: "Professional Certificate",
+    description: "Hands-on training in film production, camera handling, cinematography and lighting.",
+    icon: "🎬",
     color: "bg-green-50 border-green-100",
   },
   {
-    slug: "film-video-editing",
-    name: "Film & Video Editing",
+    slug: "cosmetology",
+    name: "Cosmetology",
     duration: "1 Year",
     level: "Professional Certificate",
-    description: "Master post-production techniques including editing, color grading and effects.",
-    icon: "🎬",
+    description: "Professional training in hair, makeup, skincare, barbering and beauty therapy.",
+    icon: "💄",
     color: "bg-red-50 border-red-100",
   },
 ]
@@ -76,13 +76,13 @@ export default function ProgramsPreview() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
               <Link href={`/programs/${program.slug}`} className={`border rounded-2xl p-6 transition-all hover:-translate-y-2 cursor-pointer group ${program.color} block relative overflow-hidden hover:shadow-xl hover:shadow-black/10`}>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-  style={{
-    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
-    backgroundSize: "200% 100%",
-    animation: "shimmer 0.8s ease forwards",
-  }}
-/>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
+                    backgroundSize: "200% 100%",
+                    animation: "shimmer 0.8s ease forwards",
+                  }}
+                />
                 <div className="text-4xl mb-4">{program.icon}</div>
                 <span className="bg-[#0a0f5c] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
                   {program.level}
