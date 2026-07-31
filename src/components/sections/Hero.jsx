@@ -1,7 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import Image from "next/image"
 import { useCountUp } from "@/hooks/useCountUp"
 
 const stats = [
@@ -28,18 +27,16 @@ export default function Hero() {
 
       {/* Background image */}
       <div className="absolute inset-0">
-        <Image
+        <img
           src="/hero-bg.jpg"
           alt="FPMI students"
-          fill
-          className="object-cover object-center"
-          priority
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(27,58,79,0.72)" }} />
+        <div className="absolute inset-0" style={{ backgroundColor: "rgba(27,58,79,0.78)" }} />
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(135deg, rgba(27,58,79,0.62) 0%, rgba(27,58,79,0.42) 50%, rgba(27,58,79,0.68) 100%)"
+            background: "linear-gradient(135deg, rgba(27,58,79,0.65) 0%, rgba(27,58,79,0.45) 50%, rgba(27,58,79,0.70) 100%)"
           }}
         />
         <div
@@ -52,14 +49,14 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 mt-16 md:mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center min-h-[70vh]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center min-h-[70vh]">
 
           {/* LEFT — Welcome card */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="bg-white/8 border border-white/15 backdrop-blur-md rounded-3xl px-8 py-8"
+            className="bg-white/8 border border-white/15 backdrop-blur-md rounded-3xl px-5 sm:px-8 py-6 sm:py-8"
           >
             <h2 className="text-white font-bold text-xl mb-4 leading-snug">
               Welcome to Flash Prime Media Institute
@@ -83,7 +80,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-center md:text-left"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               {["Easy", "Way", "To", "Excellence"].map((word, i) => (
                 <motion.span
                   key={word}
@@ -110,7 +107,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
-              className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-4"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center md:items-start justify-center md:justify-start gap-3"
             >
               <Link href="/apply" className="w-full sm:w-auto bg-[#f5c518] hover:bg-yellow-400 text-[#0a0f5c] font-bold px-8 py-4 rounded-xl text-base transition-all hover:scale-105">
                 Apply Now
