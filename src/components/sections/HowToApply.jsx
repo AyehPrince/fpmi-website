@@ -92,7 +92,7 @@ export default function HowToApply() {
           transition={{ duration: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          <div className="bg-[#0a0f5c] rounded-2xl p-8 flex flex-col justify-between">
+          <div className="bg-[#1b3a4f] rounded-2xl p-8 flex flex-col justify-between">
             <div>
               <span className="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Online Application</span>
               <h3 className="text-white text-2xl font-bold mt-3 mb-2">Apply from Anywhere</h3>
@@ -118,7 +118,7 @@ export default function HowToApply() {
                 <p className="text-gray-500 text-sm">📋 Bring: Valid ID + Academic Certificates</p>
               </div>
             </div>
-            <Link href="/contact" className="mt-6 inline-block border border-[#0a0f5c] text-[#0a0f5c] hover:bg-[#0a0f5c] hover:text-white font-bold px-6 py-3 rounded-xl transition-all text-center text-sm">
+            <Link href="/contact" className="mt-6 inline-block border border-[#0a0f5c] text-[#0a0f5c] hover:bg-[#1b3a4f] hover:text-white font-bold px-6 py-3 rounded-xl transition-all text-center text-sm">
               Get Directions
             </Link>
           </div>

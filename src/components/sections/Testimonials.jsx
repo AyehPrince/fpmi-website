@@ -58,7 +58,7 @@ export default function Testimonials() {
                   {t.photo_url ? (
                     <img src={t.photo_url} alt={t.name} className="w-10 h-10 rounded-full object-cover flex-shrink-0" />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-[#0a0f5c] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#1b3a4f] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
                       {t.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
                     </div>
                   )}

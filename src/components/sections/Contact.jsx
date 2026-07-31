@@ -56,7 +56,7 @@ export default function Contact() {
             className="space-y-6"
           >
             <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#0a0f5c] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#1b3a4f] flex items-center justify-center flex-shrink-0">
                 <MapPin size={20} className="text-[#f5c518]" />
               </div>
               <div>
@@ -68,7 +68,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#0a0f5c] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#1b3a4f] flex items-center justify-center flex-shrink-0">
                 <Phone size={20} className="text-[#f5c518]" />
               </div>
               <div>
@@ -79,7 +79,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#0a0f5c] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#1b3a4f] flex items-center justify-center flex-shrink-0">
                 <Mail size={20} className="text-[#f5c518]" />
               </div>
               <div>
@@ -89,7 +89,7 @@ export default function Contact() {
             </div>
 
             <div className="bg-gray-50 border border-gray-100 rounded-2xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#0a0f5c] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-[#1b3a4f] flex items-center justify-center flex-shrink-0">
                 <Clock size={20} className="text-[#f5c518]" />
               </div>
               <div>
@@ -200,7 +200,7 @@ export default function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-[#0a0f5c] hover:bg-[#0d1875] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2"
+                    className="w-full bg-[#1b3a4f] hover:bg-[#1d4a63] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2"
                   >
                     <Send size={18} />
                     Send Enquiry via WhatsApp

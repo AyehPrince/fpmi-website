@@ -41,7 +41,7 @@ export default function Gallery() {
   }
 
   return (
-  <section className="py-24" style={{ backgroundColor: "#0a0f5c" }}>
+  <section className="py-24" style={{ backgroundColor: "#1b3a4f" }}>
       <div className="max-w-7xl mx-auto px-6">
 
         <motion.div

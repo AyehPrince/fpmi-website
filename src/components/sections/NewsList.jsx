@@ -62,7 +62,7 @@ export default function NewsList() {
 
   return (
     <div>
-      <div style={{ backgroundColor: "#0a0f5c" }} className="py-16 px-6">
+      <div style={{ backgroundColor: "#1b3a4f" }} className="py-16 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <span className="inline-block bg-[#f5c518]/20 text-[#f5c518] text-sm font-semibold px-4 py-2 rounded-full mb-4 border border-[#f5c518]/30">
             Stay Updated
@@ -97,7 +97,7 @@ export default function NewsList() {
               onClick={() => handleCategory(cat)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                 activeCategory === cat
-                  ? "bg-[#0a0f5c] text-white"
+                  ? "bg-[#1b3a4f] text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >

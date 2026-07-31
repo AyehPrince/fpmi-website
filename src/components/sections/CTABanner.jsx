@@ -12,7 +12,7 @@ export default function CTABanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#0a0f5c] rounded-3xl px-10 py-16 text-center relative overflow-hidden"
+          className="bg-[#1b3a4f] rounded-3xl px-10 py-16 text-center relative overflow-hidden"
         >
           <div
             className="absolute inset-0 opacity-10"

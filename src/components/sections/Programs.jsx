@@ -23,7 +23,7 @@ const programs = [
     icon: "🎙️",
   },
   {
-    slug: "media-arts-production",
+    slug: "camera-handling",
     name: "Camera Handling",
     duration: "6 Months",
     level: "Certificate",
@@ -118,7 +118,7 @@ export default function Programs() {
 />
               <div className="text-4xl mb-4">{program.icon}</div>
               <div className="flex items-center gap-2 mb-3">
-                <span className="bg-[#0a0f5c] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                <span className="bg-[#1b3a4f] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
                   {program.level}
                 </span>
               </div>
@@ -129,7 +129,7 @@ export default function Programs() {
                   <Clock size={14} />
                   <span>{program.duration}</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-[#0a0f5c]/10 group-hover:bg-[#f5c518] flex items-center justify-center transition-colors">
+                <div className="w-8 h-8 rounded-full bg-[#1b3a4f]/10 group-hover:bg-[#f5c518] flex items-center justify-center transition-colors">
                   <ArrowRight size={14} className="text-[#0a0f5c]" />
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function Programs() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-16 bg-[#0a0f5c] rounded-3xl p-10 text-center"
+          className="mt-16 bg-[#1b3a4f] rounded-3xl p-10 text-center"
         >
           <h3 className="text-white text-3xl font-bold mb-3">Not sure which program is right for you?</h3>
           <p className="text-white/60 mb-8 max-w-xl mx-auto">Talk to our admissions team and we'll help you find the perfect fit for your goals and interests.</p>

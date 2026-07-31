@@ -78,7 +78,7 @@ export default function Facilities() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="group bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:border-[#0a0f5c] hover:shadow-md transition-all hover:-translate-y-1"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#0a0f5c] group-hover:bg-[#f5c518] flex items-center justify-center mb-4 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[#1b3a4f] group-hover:bg-[#f5c518] flex items-center justify-center mb-4 transition-colors">
                   <Icon size={22} className="text-white group-hover:text-[#0a0f5c] transition-colors" />
                 </div>
                 <h3 className="text-[#0a0f5c] font-bold text-base mb-2">{facility.title}</h3>
@@ -95,7 +95,7 @@ export default function Facilities() {
           transition={{ duration: 0.6 }}
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          <div className="md:col-span-2 bg-[#0a0f5c] rounded-3xl p-6 md:p-10 flex flex-col justify-between min-h-48">
+          <div className="md:col-span-2 bg-[#1b3a4f] rounded-3xl p-6 md:p-10 flex flex-col justify-between min-h-48">
             <div>
               <span className="text-[#f5c518] text-sm font-semibold uppercase tracking-widest">Our Location</span>
               <h3 className="text-white text-2xl font-bold mt-3 mb-2">Find Us in Accra</h3>

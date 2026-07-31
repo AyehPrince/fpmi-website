@@ -48,7 +48,7 @@ export default function About() {
               Located in Accra, our state-of-the-art facilities include professional TV and Radio studios, a Master Control Room, Fashion Design rooms, Hair and Make-up studios and modern hostel facilities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <div className="bg-[#0a0f5c] rounded-2xl p-5 flex-1 text-center">
+              <div className="bg-[#1b3a4f] rounded-2xl p-5 flex-1 text-center">
                 <p className="text-[#f5c518] text-3xl font-bold">2006</p>
                 <p className="text-white/70 text-sm mt-1">Year Founded</p>
               </div>
@@ -70,7 +70,7 @@ export default function About() {
             transition={{ duration: 0.7 }}
             className="relative mt-8 md:mt-0"
           >
-            <div className="bg-[#0a0f5c] rounded-3xl overflow-hidden aspect-square flex items-center justify-center">
+            <div className="bg-[#1b3a4f] rounded-3xl overflow-hidden aspect-square flex items-center justify-center">
               <div className="text-center px-8">
                 <img src="/logo1.png" alt="FPMI" className="w-40 h-40 object-contain mx-auto mb-6" />
                 <p className="text-white text-xl font-bold">Flash Prime Media Institute</p>
@@ -78,9 +78,9 @@ export default function About() {
               </div>
             </div>
             <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-[#f5c518] rounded-2xl p-4 md:p-5 shadow-lg">
-  <p className="text-[#0a0f5c] font-bold text-xl md:text-2xl">1000+</p>
-  <p className="text-[#0a0f5c]/70 text-sm">Happy Graduates</p>
-</div>
+              <p className="text-[#0a0f5c] font-bold text-xl md:text-2xl">1000+</p>
+              <p className="text-[#0a0f5c]/70 text-sm">Happy Graduates</p>
+            </div>
           </motion.div>
         </div>
 
@@ -96,7 +96,7 @@ export default function About() {
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:border-[#f5c518] transition-colors group"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#0a0f5c]/10 group-hover:bg-[#f5c518] flex items-center justify-center mb-4 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[#1b3a4f]/10 group-hover:bg-[#f5c518] flex items-center justify-center mb-4 transition-colors">
                   <Icon size={22} className="text-[#0a0f5c] group-hover:text-[#0a0f5c]" />
                 </div>
                 <h3 className="text-[#0a0f5c] font-bold text-lg mb-2">{value.title}</h3>

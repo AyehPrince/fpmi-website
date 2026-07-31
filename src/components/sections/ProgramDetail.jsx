@@ -7,7 +7,7 @@ export default function ProgramDetail({ program }) {
   return (
     <div>
 
-      <div className="py-16 px-6" style={{ backgroundColor: "#0a0f5c" }}>
+      <div className="py-16 px-6" style={{ backgroundColor: "#1b3a4f" }}>
         <div className="max-w-7xl mx-auto">
           <Link href="/programs" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 text-sm">
             <ArrowLeft size={16} />
@@ -125,15 +125,15 @@ export default function ProgramDetail({ program }) {
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">Registration</span>
-                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ 150</span>
+                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ {program.fees.registration}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">Admission</span>
-                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ 700</span>
+                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ {program.fees.admission}</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-gray-100">
                   <span className="text-gray-500 text-sm">Tuition/Semester</span>
-                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ 2,400</span>
+                  <span className="text-[#0a0f5c] font-semibold text-sm">GH¢ {program.fees.tuition.toLocaleString()}</span>
                 </div>
                 <div className="py-3">
                   <span className="text-gray-500 text-sm block mb-1">Entry Requirements</span>
@@ -144,7 +144,7 @@ export default function ProgramDetail({ program }) {
               <Link href="/apply" className="block w-full bg-[#f5c518] hover:bg-yellow-400 text-[#0a0f5c] font-bold px-6 py-4 rounded-xl transition-all text-center text-sm">
                 Apply for this Program
               </Link>
-              <Link href="/contact" className="block w-full border border-[#0a0f5c] text-[#0a0f5c] hover:bg-[#0a0f5c] hover:text-white font-semibold px-6 py-3 rounded-xl transition-all text-center text-sm mt-3">
+              <Link href="/contact" className="block w-full border border-[#0a0f5c] text-[#0a0f5c] hover:bg-[#1b3a4f] hover:text-white font-semibold px-6 py-3 rounded-xl transition-all text-center text-sm mt-3">
                 Enquire Now
               </Link>
             </motion.div>

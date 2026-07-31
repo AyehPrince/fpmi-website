@@ -148,7 +148,7 @@ export default function NewsDetail({ slug }) {
         </div>
       )}
 
-      <div className="mt-12 bg-[#0a0f5c] rounded-2xl p-8 text-center">
+      <div className="mt-12 bg-[#1b3a4f] rounded-2xl p-8 text-center">
         <h3 className="text-white font-bold text-xl mb-2">Ready to Join FPMI?</h3>
         <p className="text-white/60 text-sm mb-6">Start your application today and secure your spot in our next intake.</p>
         <Link href="/apply" className="inline-block bg-[#f5c518] hover:bg-yellow-400 text-[#0a0f5c] font-bold px-8 py-3 rounded-xl transition-all">

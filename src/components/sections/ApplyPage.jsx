@@ -189,7 +189,7 @@ async function fetchCourses() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#f0f2f5" }}>
 
-      <div style={{ backgroundColor: "#0a0f5c" }} className="py-16 px-6">
+      <div style={{ backgroundColor: "#1b3a4f" }} className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 text-center">Apply to FPMI</h1>
           <p className="text-white/60 text-center text-lg">Begin your journey to excellence today</p>
@@ -279,7 +279,7 @@ async function fetchCourses() {
   ))}
 </select>
                 </div>
-                <button type="submit" className="w-full bg-[#0a0f5c] hover:bg-[#0d1875] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                <button type="submit" className="w-full bg-[#1b3a4f] hover:bg-[#1d4a63] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
                   Proceed to Payment
                   <ArrowRight size={18} />
                 </button>
@@ -300,7 +300,7 @@ async function fetchCourses() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <div className="bg-white border border-gray-200 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-[#0a0f5c] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-[#1b3a4f] flex items-center justify-center">
                   <Lock size={20} className="text-[#f5c518]" />
                 </div>
                 <div>
@@ -364,7 +364,7 @@ async function fetchCourses() {
               <form onSubmit={handleSubmitApplication} className="space-y-6">
 
   {/* Applicant Details */}
-  <div className="bg-[#0a0f5c]/5 border border-[#0a0f5c]/10 rounded-2xl p-6">
+  <div className="bg-[#1b3a4f]/5 border border-[#1b3a4f]/10 rounded-2xl p-6">
     <h3 className="text-[#0a0f5c] font-bold text-lg mb-4">
       Applicant Details
     </h3>
@@ -528,7 +528,7 @@ async function fetchCourses() {
     </h3>
 
     <label className="block">
-      <div className="border-2 border-dashed border-[#0a0f5c]/20 rounded-2xl p-10 text-center cursor-pointer hover:border-[#f5c518] transition-all">
+      <div className="border-2 border-dashed border-[#1b3a4f]/20 rounded-2xl p-10 text-center cursor-pointer hover:border-[#f5c518] transition-all">
         <div className="text-4xl mb-3">📷</div>
 
         <p className="font-semibold text-[#0a0f5c]">
@@ -561,7 +561,7 @@ async function fetchCourses() {
   <button
     type="submit"
     disabled={loading}
-    className="w-full bg-[#0a0f5c] hover:bg-[#0d1875] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2"
+    className="w-full bg-[#1b3a4f] hover:bg-[#1d4a63] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2"
   >
     <Send size={18} />
     {loading ? "Submitting..." : "Submit Application"}
