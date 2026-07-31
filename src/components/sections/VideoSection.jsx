@@ -1,14 +1,6 @@
 "use client"
-import { useRef, useEffect } from "react"
 
 export default function VideoSection() {
-  const videoRef = useRef(null)
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {})
-    }
-  }, [])
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "#f8f9fc" }}>
@@ -22,7 +14,7 @@ export default function VideoSection() {
             <span className="w-8 h-px" style={{ backgroundColor: "#f5c518", display: "inline-block" }}></span>
           </span>
           <h2 className="text-3xl md:text-4xl font-black mt-3 leading-tight" style={{ color: "#1b3a4f", letterSpacing: "-0.02em" }}>
-            See What Happens Inside Our School
+            See What Happens Inside Our Studios
           </h2>
         </div>
 
@@ -73,20 +65,19 @@ export default function VideoSection() {
             position: "relative",
             backgroundColor: "#000",
           }}>
-            <video
-              ref={videoRef}
-              muted
-              loop
-              playsInline
+            <iframe
+              src="https://www.youtube.com/embed/Sn7mbkPcQXg?autoplay=1&mute=1&loop=1&playlist=Sn7mbkPcQXg&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
+              title="Flash Prime Media Institute"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
               style={{
+                position: "absolute",
+                top: 0, left: 0,
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
-                display: "block",
+                border: "none",
               }}
-            >
-              <source src="/hero-video.webm" type="video/webm" />
-            </video>
+            />
 
             {/* Subtle vignette overlay */}
             <div style={{
@@ -105,6 +96,7 @@ export default function VideoSection() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
+              pointerEvents: "none",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <div style={{
@@ -151,7 +143,7 @@ export default function VideoSection() {
 
         {/* Bottom caption */}
         <p className="text-center mt-10 text-sm" style={{ color: "#888", maxWidth: 500, margin: "40px auto 0" }}>
-          Step inside our professional studios and see where media professionals are made — from broadcast journalism to fashion, film and beyond.
+          Step inside our professional school and see where media professionals are made — from broadcast journalism to fashion, film and beyond.
         </p>
 
       </div>
