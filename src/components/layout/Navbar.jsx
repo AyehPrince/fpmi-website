@@ -65,7 +65,6 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
-    handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -76,12 +75,6 @@ export default function Navbar() {
 
   // Mobile (below lg) is ALWAYS a solid, opaque white bar, regardless of route
   // or scroll position — no transitions on its background or text color at all.
-  // That's deliberate: this bar used to inherit the same transparent/scrolled
-  // logic as desktop, which on a real device could put a dark icon over a
-  // still-dark, still-transitioning background for a moment (or, on inner pages,
-  // conflict with an inline style and disappear against a same-toned section
-  // background). Keeping mobile static removes that whole failure mode —
-  // the burger is dark-on-white, full stop, every page, every load.
   const navClasses = transparent
     ? "bg-white shadow-md py-3 lg:bg-transparent lg:shadow-none lg:py-5"
     : "bg-white shadow-md py-3 lg:bg-white/95 lg:backdrop-blur-md"
