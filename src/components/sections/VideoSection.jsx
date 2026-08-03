@@ -14,7 +14,7 @@ export default function VideoSection() {
             <span className="w-8 h-px" style={{ backgroundColor: "#f5c518", display: "inline-block" }}></span>
           </span>
           <h2 className="text-3xl md:text-4xl font-black mt-3 leading-tight" style={{ color: "#1b3a4f", letterSpacing: "-0.02em" }}>
-            See What Happens Inside Our Studios
+            See What Happens Inside Our School
           </h2>
         </div>
 
