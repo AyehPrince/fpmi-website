@@ -86,21 +86,7 @@ export default function ProgramDetail({ program }) {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-[#0a0f5c] mb-6">Program Gallery</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <div key={i} className="aspect-square rounded-2xl bg-gray-100 border border-gray-200 flex flex-col items-center justify-center gap-2 hover:border-[#f5c518] transition-colors">
-                    <ImageIcon size={28} className="text-gray-300" />
-                    <p className="text-gray-400 text-xs">Photo coming soon</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            
 
           </div>
 
