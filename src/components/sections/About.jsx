@@ -42,14 +42,14 @@ export default function About() {
               Shaping the Next Generation of Media Professionals
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed mb-6">
-              Founded in 2006 by Clement Amankwah, Flash Prime Media Institute has been at the forefront of creative arts and media education in Ghana. We provide a dynamic learning environment that nurtures creativity, research and scholarship.
+              Founded in 2017 by Clement Amankwah, Flash Prime Media Institute has been at the forefront of creative arts and media education in Ghana. We provide a dynamic learning environment that nurtures creativity, research and scholarship.
             </p>
             <p className="text-gray-500 text-lg leading-relaxed mb-8">
               Located in Accra, our state-of-the-art facilities include professional TV and Radio studios, a Master Control Room, Fashion Design rooms, Hair and Make-up studios and modern hostel facilities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="bg-[#1b3a4f] rounded-2xl p-5 flex-1 text-center">
-                <p className="text-[#f5c518] text-3xl font-bold">2006</p>
+                <p className="text-[#f5c518] text-3xl font-bold">2017</p>
                 <p className="text-white/70 text-sm mt-1">Year Founded</p>
               </div>
               <div className="bg-[#f5c518] rounded-2xl p-5 flex-1 text-center">

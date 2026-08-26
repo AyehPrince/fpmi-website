@@ -5,7 +5,7 @@ import Facilities from "@/components/sections/Facilities"
 
 export const metadata = {
   title: "About Us | Flash Prime Media Institute",
-  description: "Founded in 2006 by Clement Amankwah, FPMI is Ghana's premier media and creative arts institute in Accra with professional TV studios, radio studios and more.",
+  description: "Founded in 2017 by Clement Amankwah, FPMI is Ghana's premier media and creative arts institute in Accra with professional TV studios, radio studios and more.",
 }
 
 export default function AboutPage() {

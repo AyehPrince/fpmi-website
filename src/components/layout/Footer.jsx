@@ -42,7 +42,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Ghana's premier media and creative arts institute. Shaping the next generation of media professionals since 2006.
+              Ghana's premier media and creative arts institute. Shaping the next generation of media professionals since 2017.
             </p>
             <div className="flex items-center gap-3">
   <a href="https://www.facebook.com/Flashmediainstitute" className="w-9 h-9 rounded-lg bg-white/10 hover:bg-[#f5c518] flex items-center justify-center transition-colors group">

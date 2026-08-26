@@ -62,7 +62,7 @@ export default function Hero() {
               Welcome to Flash Prime Media Institute
             </h2>
             <p className="text-white/75 text-sm leading-relaxed">
-              I am pleased to welcome you to Flash Prime Media Institute where you will be endowed with the best knowledge in both practical and theoretical field in Media Art Education. FPMI is the best ever known practical media institute in Ghana. At Flash Prime Media Institute we have five (5) main departments; The Journalism Department, Media Art Department, Fashion Department, Cosmetology Department And Care Giving Department.
+              I am pleased to welcome you to Flash Prime Media Institute where you will be endowed with the best knowledge in both practical and theoretical field in Media Art Education. FPMI is the best ever known practical media institute in Ghana. At Flash Prime Media Institute we have five (5) main departments; The Journalism Department, Media Art Department, Fashion Department, Cosmetology Department And Catering Department.
             </p>
 
             {/* Stats row inside card */}
