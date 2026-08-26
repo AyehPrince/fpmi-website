@@ -1,10 +1,10 @@
+// src/components/sections/ApplyPage.jsx
 "use client"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { CreditCard, FileText, Send, Phone, CheckCircle, ArrowRight, Lock, Globe } from "lucide-react"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
-import { programs } from "@/data/programs"
 
 const steps = [
   { number: "01", icon: CreditCard, title: "Pay Registration Fee" },
@@ -12,13 +12,6 @@ const steps = [
   { number: "03", icon: Send, title: "Submit Application" },
   { number: "04", icon: Phone, title: "Await Confirmation" },
 ]
-
-// Foreign / international applicants are only eligible for the 2-year diploma
-// programs — derived from the shared program data, not hardcoded, so this
-// stays correct automatically if a program's level ever changes.
-const diplomaProgramNames = new Set(
-  programs.filter((p) => p.level === "Diploma").map((p) => p.name)
-)
 
 // Paystack accounts registered in Ghana can only charge in GHS — USD isn't an
 // option here (Paystack currently only allows USD-denominated charging for
@@ -105,7 +98,9 @@ async function fetchCourses() {
 })
 
   // International track kicks in the moment nationality isn't Ghana. Drives the
-  // eligible-programs filter, the fee shown/charged, and the payment channels.
+  // fee shown/charged and the payment channels. Every program is open to
+  // international applicants — it's the international track itself that runs
+  // a flat 2 years, not a restriction on which program they can pick.
   const isInternational = basicInfo.nationality !== "" && basicInfo.nationality !== "Ghana"
 
   const eligibleCourses = courses
@@ -410,7 +405,7 @@ async function fetchCourses() {
                     <Globe size={15} /> International Student Track
                   </p>
                   <p className="text-gray-600 text-sm">
-                    Because you selected a nationality outside Ghana, you're on our international track: eligible for our <strong>2-year diploma programs only</strong>, with a registration fee of <strong>${INTERNATIONAL_REGISTRATION_USD}</strong> (charged as GH¢ {INTERNATIONAL_REGISTRATION_GHS_DISPLAY} by card — international cards are converted automatically by your bank). See the <Link href="/international" className="underline font-semibold">International Students page</Link> for the full fee schedule.
+                    Because you selected a nationality outside Ghana, you're on our international track: choose any of our programs below — as an international student your program runs <strong>2 years</strong> regardless of which one you pick. Registration fee is <strong>${INTERNATIONAL_REGISTRATION_USD}</strong> (charged as GH¢ {INTERNATIONAL_REGISTRATION_GHS_DISPLAY} by card — international cards are converted automatically by your bank). See the <Link href="/international" className="underline font-semibold">International Students page</Link> for the full fee schedule.
                   </p>
                 </div>
               ) : (
