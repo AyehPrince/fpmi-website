@@ -204,7 +204,7 @@ export default function VideoSection() {
             {[
               { value: "70%", label: "Practical" },
               { value: "8", label: "Programs" },
-              { value: "2006", label: "Est." },
+              { value: "2017", label: "Est." },
             ].map(s => (
               <div key={s.label} style={{
                 backgroundColor: "white",
