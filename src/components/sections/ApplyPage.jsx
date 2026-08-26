@@ -1,4 +1,3 @@
-// src/components/sections/ApplyPage.jsx
 "use client"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
@@ -18,16 +17,23 @@ const steps = [
 // Nigeria- and Kenya-based accounts). International cards still work fine on
 // a GHS charge; the cardholder's own bank converts from their card's currency
 // automatically, the same way any foreign card works at a local shop.
-// This rate is a manually-set approximation, not a live feed — GHS/USD moves,
-// so it's worth checking and nudging this number every so often.
+// This exchange rate is a manually-set approximation, not a live feed —
+// GHS/USD moves, so it's worth checking and nudging this number every so often.
 const USD_TO_GHS_RATE = 11.5
+
+// Paystack's published Ghana rate is 1.95% on every transaction, local or
+// international (unlike Nigeria, Ghana doesn't charge a higher rate for
+// international cards). Same idea as the domestic 150 → 153 gross-up: charge
+// slightly more than the target so the school still nets the full amount
+// after Paystack's cut, instead of quietly losing ~2% of every international
+// registration fee.
+const PAYSTACK_FEE_RATE = 0.0195
 const INTERNATIONAL_REGISTRATION_USD = 50
-const INTERNATIONAL_REGISTRATION_GHS_PESEWAS = Math.round(
-  INTERNATIONAL_REGISTRATION_USD * USD_TO_GHS_RATE * 100
+const INTERNATIONAL_REGISTRATION_GHS_TARGET = INTERNATIONAL_REGISTRATION_USD * USD_TO_GHS_RATE
+const INTERNATIONAL_REGISTRATION_GHS_DISPLAY = Math.ceil(
+  INTERNATIONAL_REGISTRATION_GHS_TARGET / (1 - PAYSTACK_FEE_RATE)
 )
-const INTERNATIONAL_REGISTRATION_GHS_DISPLAY = (
-  INTERNATIONAL_REGISTRATION_GHS_PESEWAS / 100
-).toFixed(0)
+const INTERNATIONAL_REGISTRATION_GHS_PESEWAS = INTERNATIONAL_REGISTRATION_GHS_DISPLAY * 100
 
 const COUNTRIES = [
   "Ghana",
@@ -188,29 +194,35 @@ async function fetchCourses() {
           { display_name: "Nationality", variable_name: "nationality", value: basicInfo.nationality },
         ]
       },
-      callback: async function(response) {
-        // Record the payment the instant Paystack confirms it — before the
-        // applicant has to fill in a single field of the actual form. If their
-        // connection drops right now, this row is already saved, and they can
-        // come back later and resume with their reference instead of paying again.
-        try {
-          await supabase.from("payment_references").insert([
-            {
-              reference: response.reference,
-              full_name: basicInfo.full_name,
-              email: basicInfo.email,
-              phone: basicInfo.phone,
-              course_id: basicInfo.course_id,
-              program_name: basicInfo.program,
-              amount: payAmount,
-              nationality: basicInfo.nationality,
-            },
-          ])
-        } catch (err) {
-          // Don't block them from continuing just because this log-write failed —
-          // they've already paid. Just note it so it can be checked manually.
-          console.error("Could not record payment_references row:", err)
-        }
+      callback: function(response) {
+        // Paystack's setup() rejects an async function passed directly as
+        // `callback` — throws "Attribute callback must be a valid function"
+        // and aborts before the popup ever opens. Keep this one synchronous;
+        // do the actual async work in an inner IIFE instead.
+        (async () => {
+          // Record the payment the instant Paystack confirms it — before the
+          // applicant has to fill in a single field of the actual form. If their
+          // connection drops right now, this row is already saved, and they can
+          // come back later and resume with their reference instead of paying again.
+          try {
+            await supabase.from("payment_references").insert([
+              {
+                reference: response.reference,
+                full_name: basicInfo.full_name,
+                email: basicInfo.email,
+                phone: basicInfo.phone,
+                course_id: basicInfo.course_id,
+                program_name: basicInfo.program,
+                amount: payAmount,
+                nationality: basicInfo.nationality,
+              },
+            ])
+          } catch (err) {
+            // Don't block them from continuing just because this log-write failed —
+            // they've already paid. Just note it so it can be checked manually.
+            console.error("Could not record payment_references row:", err)
+          }
+        })()
 
         setReference(response.reference)
         setStep("form")
