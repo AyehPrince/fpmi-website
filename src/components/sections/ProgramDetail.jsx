@@ -1,14 +1,37 @@
+// src/components/sections/ProgramDetail.jsx
 "use client"
 import { motion } from "framer-motion"
 import { Clock, CheckCircle, Briefcase, ArrowLeft, GraduationCap, ImageIcon } from "lucide-react"
 import Link from "next/link"
 
+// Real photos recovered from the old site, one per program that has one yet.
+// Falls back to the general campus photo for programs that don't.
+const PROGRAM_HEADER_IMAGES = {
+  "fashion-design": "/programs/headers/fashion-design.jpg",
+  "radio-tv-presenting": "/programs/headers/radio-tv-presenting.jpg",
+  "cosmetology": "/programs/headers/cosmetology.jpg",
+  "broadcast-journalism": "/programs/headers/broadcast-journalism.jpg",
+}
+
 export default function ProgramDetail({ program }) {
+  const headerImage = PROGRAM_HEADER_IMAGES[program.slug] || "/hero-bg.jpg"
+
   return (
     <div>
 
-      <div className="py-16 px-6" style={{ backgroundColor: "#1b3a4f" }}>
-        <div className="max-w-7xl mx-auto">
+      <div className="relative py-16 px-6 overflow-hidden">
+        <img
+          src={headerImage}
+          alt={program.name}
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(90deg, rgba(10,15,40,0.92) 0%, rgba(27,58,79,0.85) 45%, rgba(27,58,79,0.55) 100%)"
+          }}
+        />
+        <div className="relative max-w-7xl mx-auto">
           <Link href="/programs" className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8 text-sm">
             <ArrowLeft size={16} />
             Back to Programs

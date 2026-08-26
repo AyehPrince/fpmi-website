@@ -1,5 +1,7 @@
+// src/app/faq/page.js
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
+import PageHeader from "@/components/layout/PageHeader"
 import FAQ from "@/components/sections/FAQ"
 
 export const metadata = {
@@ -12,6 +14,7 @@ export default function FAQPage() {
     <main>
       <Navbar />
       <div className="pt-24">
+        <PageHeader title="FAQ" breadcrumbLabel="FAQ" />
         <FAQ />
       </div>
       <Footer />

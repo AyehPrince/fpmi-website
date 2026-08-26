@@ -1,3 +1,4 @@
+// src/components/sections/Hero.jsx
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -25,24 +26,20 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-32 md:py-0" style={{ backgroundColor: "#1b3a4f" }}>
 
-      {/* Background image */}
+      {/* Background image — one continuous photo, shaded left-to-right rather
+          than a flat uniform wash. Strong navy on the left where the welcome
+          card needs it for legibility, fading down to nearly clear by the
+          right edge so the photo itself actually reads. */}
       <div className="absolute inset-0">
         <img
           src="/hero-bg.jpg"
           alt="FPMI students"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(27,58,79,0.78)" }} />
         <div
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(135deg, rgba(27,58,79,0.65) 0%, rgba(27,58,79,0.45) 50%, rgba(27,58,79,0.70) 100%)"
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-15"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, #f5c518 0%, transparent 50%), radial-gradient(circle at 80% 20%, #00b4d8 0%, transparent 40%)`
+            background: "linear-gradient(90deg, rgba(10,15,40,0.94) 0%, rgba(20,40,65,0.88) 20%, rgba(27,58,79,0.72) 40%, rgba(27,58,79,0.35) 65%, rgba(27,58,79,0.08) 100%)"
           }}
         />
       </div>
@@ -56,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="bg-white/8 border border-white/15 backdrop-blur-md rounded-3xl px-5 sm:px-8 py-6 sm:py-8"
+            className="relative bg-white/8 border border-white/15 backdrop-blur-md rounded-3xl px-5 sm:px-8 py-6 sm:py-8"
           >
             <h2 className="text-white font-bold text-xl mb-4 leading-snug">
               Welcome to Flash Prime Media Institute
@@ -71,6 +68,22 @@ export default function Hero() {
                 <StatItem key={stat.label} {...stat} />
               ))}
             </div>
+
+            {/* Legacy seal badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.9, type: "spring" }}
+              className="absolute -bottom-5 -right-5 hidden sm:block"
+            >
+              <div
+                className="w-[88px] h-[88px] rounded-full bg-[#f5c518] border-4 border-[#1b3a4f] shadow-xl flex flex-col items-center justify-center text-center"
+                style={{ transform: "rotate(-8deg)" }}
+              >
+                <span className="text-[#0a0f5c] font-bold text-[9px] tracking-widest leading-none">ESTABLISHED</span>
+                <span className="text-[#0a0f5c] font-black text-xl leading-none mt-1">2017</span>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* RIGHT — Headline + buttons */}
@@ -81,17 +94,25 @@ export default function Hero() {
             className="text-center md:text-left"
           >
             <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              {["Easy", "Way", "To", "Excellence"].map((word, i) => (
+              {["Easy", "Way", "To"].map((word, i) => (
                 <motion.span
                   key={word}
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 + i * 0.12 }}
-                  className="inline-block mr-4 text-[#f5c518]"
+                  className="inline-block mr-4 text-white"
                 >
                   {word}
                 </motion.span>
               ))}
+              <motion.span
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.66 }}
+                className="inline-block text-[#f5c518]"
+              >
+                Excellence
+              </motion.span>
             </h1>
 
             <motion.p

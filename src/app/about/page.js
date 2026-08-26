@@ -1,5 +1,7 @@
+// src/app/about/page.js
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
+import PageHeader from "@/components/layout/PageHeader"
 import About from "@/components/sections/About"
 import Facilities from "@/components/sections/Facilities"
 
@@ -13,6 +15,7 @@ export default function AboutPage() {
     <main>
       <Navbar />
       <div className="pt-24">
+        <PageHeader title="About Us" image="/campus-life.jpg" />
         <About />
         <Facilities />
       </div>

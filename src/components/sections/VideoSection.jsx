@@ -1,6 +1,65 @@
+// src/components/sections/VideoSection.jsx
 "use client"
+import { useEffect, useRef, useState } from "react"
+import { Volume2, VolumeX } from "lucide-react"
+
+const VIDEO_ID = "Sn7mbkPcQXg"
 
 export default function VideoSection() {
+  const playerRef = useRef(null)
+  const containerRef = useRef(null)
+  const [muted, setMuted] = useState(true)
+  const [playerReady, setPlayerReady] = useState(false)
+
+  useEffect(() => {
+    function createPlayer() {
+      playerRef.current = new window.YT.Player(containerRef.current, {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          loop: 1,
+          playlist: VIDEO_ID,
+          controls: 0,
+          showinfo: 0,
+          rel: 0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+        },
+        events: {
+          onReady: () => setPlayerReady(true),
+        },
+      })
+    }
+
+    if (window.YT && window.YT.Player) {
+      createPlayer()
+    } else if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+      const tag = document.createElement("script")
+      tag.src = "https://www.youtube.com/iframe_api"
+      document.body.appendChild(tag)
+      window.onYouTubeIframeAPIReady = createPlayer
+    } else {
+      window.onYouTubeIframeAPIReady = createPlayer
+    }
+
+    return () => {
+      if (playerRef.current && playerRef.current.destroy) {
+        playerRef.current.destroy()
+      }
+    }
+  }, [])
+
+  function toggleMute() {
+    if (!playerRef.current) return
+    if (muted) {
+      playerRef.current.unMute()
+      setMuted(false)
+    } else {
+      playerRef.current.mute()
+      setMuted(true)
+    }
+  }
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "#f8f9fc" }}>
@@ -14,7 +73,7 @@ export default function VideoSection() {
             <span className="w-8 h-px" style={{ backgroundColor: "#f5c518", display: "inline-block" }}></span>
           </span>
           <h2 className="text-3xl md:text-4xl font-black mt-3 leading-tight" style={{ color: "#1b3a4f", letterSpacing: "-0.02em" }}>
-            See What Happens Inside Our School
+            See What Happens Inside Our Studios
           </h2>
         </div>
 
@@ -65,19 +124,41 @@ export default function VideoSection() {
             position: "relative",
             backgroundColor: "#000",
           }}>
-            <iframe
-              src="https://www.youtube.com/embed/Sn7mbkPcQXg?autoplay=1&mute=1&loop=1&playlist=Sn7mbkPcQXg&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3"
-              title="Flash Prime Media Institute"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
+            <div
+              ref={containerRef}
               style={{
                 position: "absolute",
                 top: 0, left: 0,
                 width: "100%",
                 height: "100%",
-                border: "none",
               }}
             />
+
+            {playerReady && (
+              <button
+                onClick={toggleMute}
+                aria-label={muted ? "Unmute video" : "Mute video"}
+                style={{
+                  position: "absolute",
+                  top: 16, right: 16,
+                  zIndex: 5,
+                  width: 40, height: 40,
+                  borderRadius: "50%",
+                  backgroundColor: "rgba(10,15,40,0.55)",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  backdropFilter: "blur(4px)",
+                  transition: "background-color 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "rgba(10,15,40,0.8)")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "rgba(10,15,40,0.55)")}
+              >
+                {muted ? <VolumeX size={18} color="white" /> : <Volume2 size={18} color="white" />}
+              </button>
+            )}
 
             {/* Subtle vignette overlay */}
             <div style={{
@@ -123,7 +204,7 @@ export default function VideoSection() {
             {[
               { value: "70%", label: "Practical" },
               { value: "8", label: "Programs" },
-              { value: "2017", label: "Est." },
+              { value: "2006", label: "Est." },
             ].map(s => (
               <div key={s.label} style={{
                 backgroundColor: "white",

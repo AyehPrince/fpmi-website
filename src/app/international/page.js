@@ -1,6 +1,7 @@
 // src/app/international/page.js
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
+import PageHeader from "@/components/layout/PageHeader"
 import InternationalPage from "@/components/sections/InternationalPage"
 
 export const metadata = {
@@ -13,6 +14,7 @@ export default function International() {
     <main>
       <Navbar />
       <div className="pt-24">
+        <PageHeader title="International Students" breadcrumbLabel="International Students" />
         <InternationalPage />
       </div>
       <Footer />

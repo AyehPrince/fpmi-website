@@ -1,5 +1,7 @@
+// src/app/news/page.js
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
+import PageHeader from "@/components/layout/PageHeader"
 import NewsList from "@/components/sections/NewsList"
 
 export const metadata = {
@@ -12,6 +14,7 @@ export default function NewsPage() {
     <main>
       <Navbar />
       <div className="pt-24">
+        <PageHeader title="News & Updates" breadcrumbLabel="News" />
         <NewsList />
       </div>
       <Footer />

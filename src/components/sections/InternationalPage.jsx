@@ -1,7 +1,7 @@
 // src/components/sections/InternationalPage.jsx
 "use client"
+import { GraduationCap, ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { Globe, GraduationCap, ArrowRight } from "lucide-react"
 
 const INTERNATIONAL_FEES = [
   { label: "Registration Fee", amount: "$50" },
@@ -12,19 +12,6 @@ const INTERNATIONAL_FEES = [
 export default function InternationalPage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#f0f2f5" }}>
-
-      {/* Header band */}
-      <div style={{ backgroundColor: "#1b3a4f" }} className="py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="w-14 h-14 rounded-2xl bg-[#f5c518] flex items-center justify-center mx-auto mb-5">
-            <Globe size={26} className="text-[#0a0f5c]" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">International Students</h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            Flash Prime Media Institute welcomes students from outside Ghana to train alongside our local students in Accra.
-          </p>
-        </div>
-      </div>
 
       <div className="max-w-4xl mx-auto px-6 py-12 space-y-10">
 
