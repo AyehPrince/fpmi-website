@@ -5,6 +5,7 @@ export default function sitemap() {
     { url: baseUrl, priority: 1.0 },
     { url: `${baseUrl}/about`, priority: 0.8 },
     { url: `${baseUrl}/programs`, priority: 0.9 },
+    { url: `${baseUrl}/international`, priority: 0.8 },
     { url: `${baseUrl}/gallery`, priority: 0.6 },
     { url: `${baseUrl}/news`, priority: 0.7 },
     { url: `${baseUrl}/faq`, priority: 0.6 },

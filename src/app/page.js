@@ -7,6 +7,7 @@ import HowToApply from "@/components/sections/HowToApply"
 import TestimonialsStrip from "@/components/sections/TestimonialsStrip"
 import CTABanner from "@/components/sections/CTABanner"
 import Footer from "@/components/layout/Footer"
+import InternationalCTA from "@/components/sections/InternationalCTA"   
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <About />
       <ProgramsPreview />
       <HowToApply />
+      <InternationalCTA />
       <TestimonialsStrip />
       <CTABanner />
       <Footer />
