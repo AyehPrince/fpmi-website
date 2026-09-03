@@ -1,8 +1,23 @@
 // src/components/sections/Hero.jsx
 "use client"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useCountUp } from "@/hooks/useCountUp"
+
+// Real campus/studio photos, shuffled behind the same gradient overlay the
+// hero has always had. hero-bg.jpg (the group photo) stays in the mix too.
+const HERO_IMAGES = [
+  "/hero-bg.jpg",
+  "/hero-gallery/radio-studio-1.webp",
+  "/hero-gallery/radio-studio-2.webp",
+  "/hero-gallery/radio-equipment.webp",
+  "/hero-gallery/classroom-1.webp",
+  "/hero-gallery/classroom-2.webp",
+  "/hero-gallery/classroom-3.webp",
+  "/hero-gallery/campus-lobby.webp",
+  "/hero-gallery/campus-entrance.webp",
+]
 
 const stats = [
   { number: 15, suffix: "+", label: "Years of Excellence" },
@@ -23,19 +38,41 @@ function StatItem({ number, suffix, label }) {
 }
 
 export default function Hero() {
+  const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => {
+        if (HERO_IMAGES.length <= 1) return prev
+        let next = Math.floor(Math.random() * HERO_IMAGES.length)
+        while (next === prev) {
+          next = Math.floor(Math.random() * HERO_IMAGES.length)
+        }
+        return next
+      })
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-32 md:py-0" style={{ backgroundColor: "#1b3a4f" }}>
 
-      {/* Background image — one continuous photo, shaded left-to-right rather
-          than a flat uniform wash. Strong navy on the left where the welcome
-          card needs it for legibility, fading down to nearly clear by the
-          right edge so the photo itself actually reads. */}
+      {/* Background image — shuffles between real campus/studio photos every
+          few seconds via opacity crossfade. Same left-to-right shading as
+          before, strong navy on the left where the welcome card needs it for
+          legibility, fading down to nearly clear by the right edge — that
+          overlay sits above the photos and never changes, only the photo
+          underneath it does. */}
       <div className="absolute inset-0">
-        <img
-          src="/hero-bg.jpg"
-          alt="FPMI students"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
+        {HERO_IMAGES.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt="FPMI campus"
+            className="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1500ms] ease-in-out"
+            style={{ opacity: i === currentImage ? 1 : 0 }}
+          />
+        ))}
         <div
           className="absolute inset-0"
           style={{
@@ -59,7 +96,7 @@ export default function Hero() {
               Welcome to Flash Prime Media Institute
             </h2>
             <p className="text-white/75 text-sm leading-relaxed">
-              I am pleased to welcome you to Flash Prime Media Institute where you will be endowed with the best knowledge in both practical and theoretical field in Media Art Education. FPMI is the best ever known practical media institute in Ghana. At Flash Prime Media Institute we have five (5) main departments; The Journalism Department, Media Art Department, Fashion Department, Cosmetology Department And Catering Department.
+              I am pleased to welcome you to Flash Prime Media Institute where you will be endowed with the best knowledge in both practical and theoretical field in Media Art Education. FPMI is the best ever known practical media institute in Ghana. At Flash Prime Media Institute we have five (5) main departments; The Journalism Department, Media Art Department, Fashion Department, Cosmetology Department And Care Giving Department.
             </p>
 
             {/* Stats row inside card */}

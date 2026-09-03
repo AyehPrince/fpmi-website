@@ -1,3 +1,4 @@
+// src/components/layout/Navbar.jsx
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -8,6 +9,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Courses", href: "/programs" },
+  { label: "Online Registration", href: "/apply" },
   { label: "International", href: "/international" },
   { label: "News", href: "/news" },
   { label: "Gallery", href: "/gallery" },
@@ -82,10 +84,10 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClasses}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+        <Link href="/" className="flex items-center gap-3 flex-shrink-0 lg:mr-4 xl:mr-8">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-white flex items-center justify-center">
             <img src="/logo.png" alt="FPMI Logo" className="w-9 h-9 object-contain" />
           </div>
@@ -100,12 +102,12 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[#f5c518] relative ${
+              className={`text-sm font-medium transition-colors hover:text-[#f5c518] relative whitespace-nowrap ${
                 transparent ? "text-white" : "text-[#1b3a4f]"
               } ${pathname === link.href ? "text-[#f5c518]" : ""}`}
             >
