@@ -1,9 +1,11 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowRight, Clock, Award, CheckCircle, ChevronRight } from "lucide-react"
+import { ArrowRight, Clock, Award, CheckCircle, ChevronRight, ChevronDown } from "lucide-react"
 import { programs } from "@/data/programs"
+import { departments, DEPARTMENT_ENTRY_REQUIREMENTS, DEPARTMENT_FEES } from "@/data/departments"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -15,7 +17,7 @@ const stagger = {
 }
 
 const NAV_LINKS = [
-  { label: "All Programs", href: "#programs" },
+  { label: "Departments", href: "#programs" },
   { label: "Admission", href: "#admission" },
   { label: "Fee Structure", href: "#fees" },
   { label: "Apply Now", href: "/apply" },
@@ -27,11 +29,10 @@ const FEES = [
     duration: "6 Months",
     tag: "Strictly Practical",
     items: [
-      { label: "Registration Form", value: "GH¢ 150" },
-      { label: "Admission Fee", value: "GH¢ 700" },
-      { label: "Tuition Fee", value: "GH¢ 2,400" },
+      { label: "Registration Form", value: "GH¢ 200" },
+      { label: "Admission Fee", value: "GH¢ 800" },
+      { label: "Tuition Fee", value: "GH¢ 2,500" },
     ],
-    note: "70% Practical · 30% Theory",
     accent: "#00b4d8",
   },
   {
@@ -39,11 +40,10 @@ const FEES = [
     duration: "1 Year",
     tag: "Most Popular",
     items: [
-      { label: "Registration Form", value: "GH¢ 150" },
-      { label: "Admission Fee", value: "GH¢ 700" },
-      { label: "Tuition (per semester)", value: "GH¢ 2,400" },
+      { label: "Registration Form", value: "GH¢ 200" },
+      { label: "Admission Fee", value: "GH¢ 800" },
+      { label: "Tuition (per semester)", value: "GH¢ 2,500" },
     ],
-    note: "70% Practical · 30% Theory",
     accent: "#f5c518",
   },
   {
@@ -51,11 +51,10 @@ const FEES = [
     duration: "2 Years",
     tag: "Advanced",
     items: [
-      { label: "Registration Form", value: "GH¢ 150" },
-      { label: "Admission Fee", value: "GH¢ 700" },
-      { label: "Tuition (per semester)", value: "GH¢ 2,400" },
+      { label: "Registration Form", value: "GH¢ 200" },
+      { label: "Admission Fee", value: "GH¢ 800" },
+      { label: "Tuition (per semester)", value: "GH¢ 2,500" },
     ],
-    note: "ICM Advanced Diploma · Qualifies for University Level 200",
     accent: "#22c55e",
   },
 ]
@@ -67,6 +66,19 @@ const ADMISSION = [
   "Informal Education: applicants between ages 20–40",
 ]
 
+// Which department each flagship program (the public-facing 8) falls under —
+// used only to make the "at a glance" bulleted list jump to the right card.
+const PROGRAM_TO_DEPARTMENT = {
+  "broadcast-journalism": "journalism-and-media-studies",
+  "radio-tv-presenting": "journalism-and-media-studies",
+  "media-arts-production": "media-arts",
+  "graphic-design": "media-arts",
+  "film-video-editing": "media-arts",
+  "fashion-design": "fashion",
+  "cosmetology": "cosmetology",
+  "catering": "catering",
+}
+
 function SectionEyebrow({ children }) {
   return (
     <div className="inline-flex items-center gap-2 mb-5">
@@ -76,9 +88,11 @@ function SectionEyebrow({ children }) {
   )
 }
 
-function ProgramCard({ program, index }) {
+function DepartmentCard({ dept, index }) {
+  const [expanded, setExpanded] = useState(false)
+
   return (
-    <motion.div variants={fadeUp} id={program.slug}>
+    <motion.div variants={fadeUp} id={dept.slug}>
       {/* Outer shell — double bezel */}
       <div
         className="group relative rounded-[1.5rem] p-[1.5px] transition-all duration-700"
@@ -90,7 +104,7 @@ function ProgramCard({ program, index }) {
         <div
           className="absolute inset-0 rounded-[1.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
           style={{
-            background: `linear-gradient(135deg, ${program.accentColor}30 0%, transparent 60%)`,
+            background: `linear-gradient(135deg, ${dept.accentColor}30 0%, transparent 60%)`,
           }}
         />
 
@@ -105,7 +119,7 @@ function ProgramCard({ program, index }) {
           <div
             className="absolute top-0 right-6 text-[10rem] font-black leading-none select-none pointer-events-none transition-all duration-700 group-hover:scale-110 group-hover:opacity-100"
             style={{
-              color: `${program.accentColor}08`,
+              color: `${dept.accentColor}08`,
               transform: "translateY(-10%)",
             }}
           >
@@ -115,98 +129,70 @@ function ProgramCard({ program, index }) {
           {/* Top accent line — only appears on hover */}
           <div
             className="absolute top-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{ backgroundColor: program.accentColor }}
+            style={{ backgroundColor: dept.accentColor }}
           />
 
           {/* Image banner */}
-          {program.image && (
-            <div className="relative w-full h-72 overflow-hidden">
-              <Image
-                src={program.image}
-                alt={program.name}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 800px"
-              />
-              {/* Gradient overlay so text is readable if needed */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              {/* Level badge over image */}
-              <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                <span
-                  className="text-[10px] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full backdrop-blur-sm"
-                  style={{ backgroundColor: `${program.accentColor}cc`, color: "#fff" }}
-                >
-                  {program.level}
-                </span>
-                <span className="flex items-center gap-1 text-[11px] text-white/90 font-medium backdrop-blur-sm bg-black/20 px-2 py-1 rounded-full">
-                  <Clock size={10} />
-                  {program.duration}
-                </span>
-              </div>
+          <div className="relative w-full h-72 overflow-hidden">
+            <Image
+              src={dept.image}
+              alt={dept.name}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            <div className="absolute bottom-3 left-4">
+              <span
+                className="text-[10px] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full backdrop-blur-sm"
+                style={{ backgroundColor: `${dept.accentColor}cc`, color: "#fff" }}
+              >
+                {dept.courses.length} Course{dept.courses.length > 1 ? "s" : ""}
+              </span>
             </div>
-          )}
+          </div>
 
           <div className="relative p-7 md:p-9">
-            {/* Header row — hide badges if image is present since they're on the image */}
-            <div className="flex items-start justify-between gap-4 mb-6">
-              <div className="flex-1">
-                {!program.image && (
-                  <div className="flex flex-wrap items-center gap-2 mb-2">
+            <h3
+              className="text-2xl md:text-3xl font-black tracking-tight leading-tight mb-3"
+              style={{ color: "#0a0f5c", letterSpacing: "-0.02em" }}
+            >
+              {dept.name}
+            </h3>
+
+            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-xl">{dept.shortDescription}</p>
+
+            {/* Courses — the preview, always visible */}
+            <div className="mb-2">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
+                Courses Under This Department
+              </p>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 mb-8">
+                {dept.courses.map((course, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-gray-600">
                     <span
-                      className="text-[10px] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded-full"
-                      style={{ backgroundColor: `${program.accentColor}12`, color: program.accentColor }}
-                    >
-                      {program.level}
-                    </span>
-                    <span className="flex items-center gap-1 text-[11px] text-gray-400 font-medium">
-                      <Clock size={10} />
-                      {program.duration}
-                    </span>
-                  </div>
-                )}
-                <h3
-                  className="text-2xl md:text-3xl font-black tracking-tight leading-tight"
-                  style={{ color: "#0a0f5c", letterSpacing: "-0.02em" }}
-                >
-                  {program.name}
-                </h3>
-              </div>
+                      className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: dept.accentColor }}
+                    />
+                    {course}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-xl">{program.shortDescription}</p>
-
-            {/* Content grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              {/* What you learn */}
-              <div>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
-                  What You'll Learn
-                </p>
-                <ul className="space-y-2.5">
-                  {program.whatYouLearn.slice(0, 5).map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-gray-600">
-                      <span
-                        className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ backgroundColor: program.accentColor }}
-                      />
-                      {item}
-                    </li>
-                  ))}
-                  {program.whatYouLearn.length > 5 && (
-                    <li className="text-xs text-gray-400 pl-4">
-                      +{program.whatYouLearn.length - 5} more topics
-                    </li>
-                  )}
-                </ul>
-              </div>
-
-              {/* Career paths */}
-              <div>
+            {/* Full details — revealed on click */}
+            {expanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                transition={{ duration: 0.3 }}
+                className="mb-8 overflow-hidden"
+              >
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
                   Career Paths
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {program.careerOpportunities.map((career, i) => (
+                  {dept.careerOpportunities.map((career, i) => (
                     <span
                       key={i}
                       className="text-xs px-3 py-1.5 rounded-lg font-medium"
@@ -220,8 +206,8 @@ function ProgramCard({ program, index }) {
                     </span>
                   ))}
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            )}
 
             {/* Footer row */}
             <div
@@ -230,23 +216,22 @@ function ProgramCard({ program, index }) {
             >
               <p className="text-xs text-gray-400">
                 <span className="font-semibold text-[#0a0f5c]">Entry: </span>
-                {program.entryRequirements}
+                {DEPARTMENT_ENTRY_REQUIREMENTS}
               </p>
 
-              {/* Button-in-button pattern */}
-              <Link
-                href={`/programs/${program.slug}`}
+              <button
+                onClick={() => setExpanded(!expanded)}
                 className="group/btn flex items-center gap-3 text-sm font-bold px-5 py-3 rounded-full transition-all duration-300 flex-shrink-0"
                 style={{ backgroundColor: "#1b3a4f", color: "#fff" }}
               >
-                Full Details
+                {expanded ? "Show Less" : "Full Details"}
                 <span
-                  className="w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5"
-                  style={{ backgroundColor: program.accentColor }}
+                  className="w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300"
+                  style={{ backgroundColor: dept.accentColor, transform: expanded ? "rotate(180deg)" : "none" }}
                 >
-                  <ArrowRight size={11} color="#fff" />
+                  <ChevronDown size={13} color="#fff" />
                 </span>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -327,26 +312,50 @@ export default function ProgramsLongScroll() {
         </div>
       </div>
 
-      {/* ── PROGRAMS ── */}
+      {/* ── MAIN PROGRAMS LIST — the public-facing 8, as a plain bulleted
+           list, before anything else. Each item jumps to the card for the
+           department it belongs to. ── */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-16 md:pt-20">
+        <SectionEyebrow>At a Glance</SectionEyebrow>
+        <h2 className="text-3xl font-black text-[#0a0f5c] mb-8" style={{ letterSpacing: "-0.02em" }}>
+          Our Programs
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-3">
+          {programs.map((p) => (
+            <a
+              key={p.slug}
+              href={`#${PROGRAM_TO_DEPARTMENT[p.slug] || "programs"}`}
+              className="flex items-center gap-3 text-[#0a0f5c] font-semibold hover:text-[#f5c518] transition-colors py-1"
+            >
+              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "#f5c518" }} />
+              {p.name}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ── DEPARTMENTS — the real organizational structure. Each card is a
+           department; course list previews on the card, career paths and
+           entry requirements reveal on "Full Details". ── */}
       <section id="programs" className="max-w-5xl mx-auto px-4 sm:px-6 py-16 md:py-20">
         <div className="mb-10">
-          <SectionEyebrow>All Programs</SectionEyebrow>
+          <SectionEyebrow>Full Curriculum</SectionEyebrow>
           <h2 className="text-3xl font-black text-[#0a0f5c] mb-2" style={{ letterSpacing: "-0.02em" }}>
-            Choose Your Path
+            Departments &amp; Courses
           </h2>
-          <p className="text-gray-400 text-sm">Click any program for the full curriculum and career details</p>
+          <p className="text-gray-400 text-sm">FPMI is organized into five departments — click any card for full details</p>
         </div>
 
         {/* Quick jump pills */}
         <div className="flex flex-wrap gap-2 mb-12">
-          {programs.map((p) => (
+          {departments.map((dept) => (
             <a
-              key={p.slug}
-              href={`#${p.slug}`}
+              key={dept.slug}
+              href={`#${dept.slug}`}
               className="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-white border transition-all duration-300 hover:border-[#0a0f5c] hover:text-[#0a0f5c]"
               style={{ borderColor: "rgba(10,15,92,0.08)", color: "#888" }}
             >
-              {p.name}
+              {dept.name}
             </a>
           ))}
         </div>
@@ -358,8 +367,8 @@ export default function ProgramsLongScroll() {
           viewport={{ once: true, margin: "-40px" }}
           className="space-y-5"
         >
-          {programs.map((program, index) => (
-            <ProgramCard key={program.slug} program={program} index={index} />
+          {departments.map((dept, index) => (
+            <DepartmentCard key={dept.slug} dept={dept} index={index} />
           ))}
         </motion.div>
       </section>
@@ -533,25 +542,6 @@ export default function ProgramsLongScroll() {
                           </p>
                         </div>
                       ))}
-                    </div>
-
-                    {/* Divider */}
-                    <div
-                      className="hidden md:block w-px self-stretch mx-8 flex-shrink-0"
-                      style={{ backgroundColor: isDark ? "rgba(255,255,255,0.06)" : "rgba(10,15,92,0.06)" }}
-                    />
-
-                    {/* Right — note pill */}
-                    <div className="md:w-52 flex-shrink-0">
-                      <div
-                        className="rounded-2xl px-4 py-3 text-xs font-medium leading-relaxed text-center"
-                        style={{
-                          backgroundColor: isDark ? "rgba(245,197,24,0.1)" : `${fee.accent}10`,
-                          color: isDark ? "#f5c518" : fee.accent
-                        }}
-                      >
-                        {fee.note}
-                      </div>
                     </div>
                   </div>
                 </div>

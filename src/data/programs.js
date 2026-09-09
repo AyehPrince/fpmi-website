@@ -31,7 +31,7 @@ export const programs = [
       "Media Consultant",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Journalism & Media Studies",
       "News Reading (Twi/English)",
@@ -75,7 +75,7 @@ export const programs = [
       "Entertainment Reporter",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "News Reading (Twi/English)",
       "News Reporting",
@@ -119,7 +119,7 @@ export const programs = [
       "Freelance Videographer",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Film & Television Production",
       "Film & Video Editing",
@@ -162,7 +162,7 @@ export const programs = [
       "Creative Director",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Principles of Design & Typography",
       "Adobe Photoshop",
@@ -206,7 +206,7 @@ export const programs = [
       "Freelance Editor",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Video Editing Principles & Workflow",
       "Adobe Premiere Pro",
@@ -250,7 +250,7 @@ export const programs = [
       "Fashion Entrepreneur",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Cutting Technics",
       "Garment Construction & Technology",
@@ -294,7 +294,7 @@ export const programs = [
       "Film & TV Make-up Artist",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Facial Treatment",
       "Manicure & Pedicure",
@@ -338,7 +338,7 @@ export const programs = [
       "Institutional Food Service Provider",
     ],
     entryRequirements: "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit.",
-    fees: { registration: 150, admission: 700, tuition: 2400 },
+    fees: { registration: 200, admission: 800, tuition: 2500 },
     courses: [
       "Professional Food Preparation",
       "Kitchen Safety & Food Hygiene",

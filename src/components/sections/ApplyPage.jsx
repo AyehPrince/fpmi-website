@@ -23,7 +23,7 @@ const USD_TO_GHS_RATE = 11.5
 
 // Paystack's published Ghana rate is 1.95% on every transaction, local or
 // international (unlike Nigeria, Ghana doesn't charge a higher rate for
-// international cards). Same idea as the domestic 150 → 153 gross-up: charge
+// international cards). Same idea as the domestic 253 → 253 gross-up: charge
 // slightly more than the target so the school still nets the full amount
 // after Paystack's cut, instead of quietly losing ~2% of every international
 // registration fee.
@@ -178,7 +178,7 @@ async function fetchCourses() {
     const refPrefix = isInternational ? "FPMI-INTL" : "FPMI"
     const paystackRef = `${refPrefix}-${Date.now().toString(36)}-${randomSuffix}`
 
-    const payAmount = isInternational ? INTERNATIONAL_REGISTRATION_GHS_PESEWAS : 15300
+    const payAmount = isInternational ? INTERNATIONAL_REGISTRATION_GHS_PESEWAS : 25300
 
     const setupConfig = {
       key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
@@ -423,7 +423,7 @@ async function fetchCourses() {
               ) : (
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
                   <p className="text-amber-700 text-sm font-semibold mb-1">💳 Payment Required</p>
-                  <p className="text-amber-600 text-sm">A non-refundable registration fee of <strong>GH¢ 153</strong> is required to access the application form. This prevents spam and ensures serious applicants only.</p>
+                  <p className="text-amber-600 text-sm">A non-refundable registration fee of <strong>GH¢ 253</strong> is required to access the application form. This prevents spam and ensures serious applicants only.</p>
                 </div>
               )}
 
@@ -586,7 +586,7 @@ async function fetchCourses() {
                 <div className="flex justify-between items-center pt-3 border-t border-gray-200">
                   <span className="text-gray-700 font-bold">Registration Fee</span>
                   <span className="text-[#0a0f5c] font-bold text-lg">
-                    {isInternational ? `$${INTERNATIONAL_REGISTRATION_USD}` : "GH¢ 153"}
+                    {isInternational ? `$${INTERNATIONAL_REGISTRATION_USD}` : "GH¢ 253"}
                   </span>
                 </div>
                 {isInternational && (
@@ -604,7 +604,7 @@ async function fetchCourses() {
 
               <button onClick={handlePayWithPaystack} disabled={loading} className="w-full bg-[#f5c518] hover:bg-yellow-400 text-[#0a0f5c] font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50">
                 <CreditCard size={20} />
-                {loading ? "Processing..." : isInternational ? `Pay $${INTERNATIONAL_REGISTRATION_USD} Now` : "Pay GH¢ 153 Now"}
+                {loading ? "Processing..." : isInternational ? `Pay $${INTERNATIONAL_REGISTRATION_USD} Now` : "Pay GH¢ 253 Now"}
               </button>
 
               <button onClick={() => setStep("info")} className="w-full mt-3 border border-gray-200 text-gray-500 hover:bg-gray-50 font-medium px-6 py-3 rounded-xl transition-all text-sm">
