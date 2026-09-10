@@ -1,46 +1,8 @@
 "use client"
 import { motion } from "framer-motion"
-import { Clock, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-
-const programs = [
-  {
-    slug: "broadcast-journalism",
-    name: "Broadcast Journalism",
-    duration: "2 Years",
-    level: "Diploma",
-    description: "Master the art of news reporting, anchoring and media production for TV and radio.",
-    icon: "📺",
-    color: "bg-blue-50 border-blue-100",
-  },
-  {
-    slug: "graphic-design",
-    name: "Graphic Design",
-    duration: "1 Year",
-    level: "Professional Certificate",
-    description: "Create stunning visuals using industry-standard tools for print and digital media.",
-    icon: "🎨",
-    color: "bg-pink-50 border-pink-100",
-  },
-  {
-    slug: "fashion-design",
-    name: "Fashion Design",
-    duration: "2 Years",
-    level: "Diploma",
-    description: "Explore fashion illustration, garment construction and design for the modern industry.",
-    icon: "👗",
-    color: "bg-green-50 border-green-100",
-  },
-  {
-    slug: "film-video-editing",
-    name: "Film & Video Editing",
-    duration: "1 Year",
-    level: "Professional Certificate",
-    description: "Master post-production techniques including editing, color grading and effects.",
-    icon: "🎬",
-    color: "bg-red-50 border-red-100",
-  },
-]
+import { departments } from "@/data/departments"
 
 export default function ProgramsPreview() {
   return (
@@ -57,43 +19,42 @@ export default function ProgramsPreview() {
           <div>
             <span className="text-[#f5c518] font-semibold text-sm uppercase tracking-widest">What We Offer</span>
             <h2 className="text-4xl md:text-5xl font-bold text-[#0a0f5c] mt-3">
-              Our Programs
+              Our Departments
             </h2>
           </div>
           <Link href="/programs" className="flex items-center gap-2 text-[#0a0f5c] font-semibold hover:text-[#f5c518] transition-colors">
-            View all 8 programs
+            View all departments
             <ArrowRight size={18} />
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {programs.map((program, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {departments.map((dept, i) => (
             <motion.div
-              key={program.name}
+              key={dept.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
-              <Link href={`/programs/${program.slug}`} className={`border rounded-2xl p-6 transition-all hover:-translate-y-2 cursor-pointer group ${program.color} block relative overflow-hidden hover:shadow-xl hover:shadow-black/10`}>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-  style={{
-    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
-    backgroundSize: "200% 100%",
-    animation: "shimmer 0.8s ease forwards",
-  }}
-/>
-                <div className="text-4xl mb-4">{program.icon}</div>
-                <span className="bg-[#1b3a4f] text-white text-xs font-semibold px-2.5 py-1 rounded-full">
-                  {program.level}
+              <Link href={`/programs#${dept.slug}`} className="border border-gray-100 bg-white rounded-2xl p-6 transition-all hover:-translate-y-2 cursor-pointer group block relative overflow-hidden hover:shadow-xl hover:shadow-black/10">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
+                    backgroundSize: "200% 100%",
+                    animation: "shimmer 0.8s ease forwards",
+                  }}
+                />
+                <div className="text-4xl mb-4">{dept.icon}</div>
+                <span
+                  className="text-white text-xs font-semibold px-2.5 py-1 rounded-full"
+                  style={{ backgroundColor: dept.accentColor }}
+                >
+                  {dept.courses.length} Course{dept.courses.length > 1 ? "s" : ""}
                 </span>
-                <h3 className="text-[#0a0f5c] font-bold text-lg mt-3 mb-2 leading-tight">{program.name}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{program.description}</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-gray-400 text-sm">
-                    <Clock size={14} />
-                    <span>{program.duration}</span>
-                  </div>
+                <h3 className="text-[#0a0f5c] font-bold text-lg mt-3 mb-2 leading-tight">{dept.name}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-4">{dept.shortDescription}</p>
+                <div className="flex items-center justify-end">
                   <div className="w-8 h-8 rounded-full bg-[#1b3a4f]/10 group-hover:bg-[#f5c518] flex items-center justify-center transition-colors">
                     <ArrowRight size={14} className="text-[#0a0f5c]" />
                   </div>
@@ -111,7 +72,7 @@ export default function ProgramsPreview() {
           className="mt-8 text-center"
         >
           <Link href="/programs" className="inline-flex items-center gap-2 bg-[#1b3a4f] hover:bg-[#1d4a63] text-white font-bold px-8 py-4 rounded-xl transition-all hover:scale-105">
-            Explore All Programs
+            Explore All Departments
             <ArrowRight size={18} />
           </Link>
         </motion.div>

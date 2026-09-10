@@ -180,31 +180,79 @@ function DepartmentCard({ dept, index }) {
               </ul>
             </div>
 
-            {/* Full details — revealed on click */}
+            {/* Full details — revealed on click. This is most of what the
+                old individual /programs/[slug] detail pages used to show,
+                now living directly on the department card instead. */}
             {expanded && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 transition={{ duration: 0.3 }}
-                className="mb-8 overflow-hidden"
+                className="mb-8 overflow-hidden space-y-8"
               >
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
-                  Career Paths
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {dept.careerOpportunities.map((career, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1.5 rounded-lg font-medium"
-                      style={{
-                        backgroundColor: "#f8f9fc",
-                        color: "#0a0f5c",
-                        border: "1px solid rgba(10,15,92,0.06)",
-                      }}
-                    >
-                      {career}
-                    </span>
-                  ))}
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3">
+                    About This Department
+                  </p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{dept.fullDescription}</p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
+                    What You'll Learn
+                  </p>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                    {dept.whatYouLearn.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-gray-600">
+                        <span
+                          className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: dept.accentColor }}
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
+                    Career Paths
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {dept.careerOpportunities.map((career, i) => (
+                      <span
+                        key={i}
+                        className="text-xs px-3 py-1.5 rounded-lg font-medium"
+                        style={{
+                          backgroundColor: "#f8f9fc",
+                          color: "#0a0f5c",
+                          border: "1px solid rgba(10,15,92,0.06)",
+                        }}
+                      >
+                        {career}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-4">
+                    Fees
+                  </p>
+                  <div className="grid grid-cols-3 gap-4 bg-gray-50 border border-gray-100 rounded-xl p-4">
+                    <div>
+                      <p className="text-[11px] text-gray-400 mb-1">Registration</p>
+                      <p className="text-sm font-black" style={{ color: "#0a0f5c" }}>GH¢ {DEPARTMENT_FEES.registration}</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] text-gray-400 mb-1">Admission</p>
+                      <p className="text-sm font-black" style={{ color: "#0a0f5c" }}>GH¢ {DEPARTMENT_FEES.admission}</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] text-gray-400 mb-1">Tuition / Semester</p>
+                      <p className="text-sm font-black" style={{ color: "#0a0f5c" }}>GH¢ {DEPARTMENT_FEES.tuition.toLocaleString()}</p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             )}

@@ -23,7 +23,7 @@ const USD_TO_GHS_RATE = 11.5
 
 // Paystack's published Ghana rate is 1.95% on every transaction, local or
 // international (unlike Nigeria, Ghana doesn't charge a higher rate for
-// international cards). Same idea as the domestic 203 → 203 gross-up: charge
+// international cards). Same idea as the domestic 150 → 153 gross-up: charge
 // slightly more than the target so the school still nets the full amount
 // after Paystack's cut, instead of quietly losing ~2% of every international
 // registration fee.
@@ -493,10 +493,15 @@ async function fetchCourses() {
               </form>
             </div>
 
-            <div className="mt-4 text-center">
+            <div className="mt-4 text-center space-y-1">
               <p className="text-gray-400 text-sm">Prefer to apply in person?{" "}
                 <Link href="/contact" className="text-[#0a0f5c] font-semibold hover:text-[#f5c518] transition-colors">
                   Visit our campus
+                </Link>
+              </p>
+              <p className="text-gray-400 text-sm">Already paid via Mobile Money?{" "}
+                <Link href="/momo-admission" className="text-[#0a0f5c] font-semibold hover:text-[#f5c518] transition-colors">
+                  Fill out the admission form
                 </Link>
               </p>
             </div>
