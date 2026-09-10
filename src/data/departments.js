@@ -120,3 +120,19 @@ export const departments = [
 // institute-wide, not program-specific, so safe to reuse at department level.
 export const DEPARTMENT_ENTRY_REQUIREMENTS = "BECE certificate (18 years or above) or WASSCE/SSSCE. No grade limit."
 export const DEPARTMENT_FEES = { registration: 200, admission: 800, tuition: 2500 }
+
+// Which department each flagship program (the public-facing 8, from
+// programs.js) falls under — the single source of truth for this mapping,
+// used by both the programs page (to jump from the "at a glance" list to
+// the right department card) and the Apply form (to know which department's
+// specific courses to offer once a program is chosen).
+export const PROGRAM_TO_DEPARTMENT = {
+  "broadcast-journalism": "journalism-and-media-studies",
+  "radio-tv-presenting": "journalism-and-media-studies",
+  "media-arts-production": "media-arts",
+  "graphic-design": "media-arts",
+  "film-video-editing": "media-arts",
+  "fashion-design": "fashion",
+  "cosmetology": "cosmetology",
+  "catering": "catering",
+}

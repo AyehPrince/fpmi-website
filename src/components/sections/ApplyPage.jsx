@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { CreditCard, FileText, Send, Phone, CheckCircle, ArrowRight, Lock, Globe } from "lucide-react"
 import Link from "next/link"
 import { supabase } from "@/lib/supabase"
+import { programs } from "@/data/programs"
+import { departments, PROGRAM_TO_DEPARTMENT } from "@/data/departments"
 
 const steps = [
   { number: "01", icon: CreditCard, title: "Pay Registration Fee" },
@@ -23,11 +25,19 @@ const USD_TO_GHS_RATE = 11.5
 
 // Paystack's published Ghana rate is 1.95% on every transaction, local or
 // international (unlike Nigeria, Ghana doesn't charge a higher rate for
-// international cards). Same idea as the domestic 150 → 153 gross-up: charge
-// slightly more than the target so the school still nets the full amount
-// after Paystack's cut, instead of quietly losing ~2% of every international
-// registration fee.
+// international cards). Every registration fee below is grossed up by this
+// same rate — Math.ceil(target / (1 - PAYSTACK_FEE_RATE)) — so the school
+// always nets at least the target after Paystack's cut, never a few pesewas
+// short. Only the *_TARGET numbers need to change if a fee changes again;
+// every display and the actual Paystack charge both derive from them.
 const PAYSTACK_FEE_RATE = 0.0195
+
+const DOMESTIC_REGISTRATION_GHS_TARGET = 200
+const DOMESTIC_REGISTRATION_GHS_DISPLAY = Math.ceil(
+  DOMESTIC_REGISTRATION_GHS_TARGET / (1 - PAYSTACK_FEE_RATE)
+)
+const DOMESTIC_REGISTRATION_GHS_PESEWAS = DOMESTIC_REGISTRATION_GHS_DISPLAY * 100
+
 const INTERNATIONAL_REGISTRATION_USD = 50
 const INTERNATIONAL_REGISTRATION_GHS_TARGET = INTERNATIONAL_REGISTRATION_USD * USD_TO_GHS_RATE
 const INTERNATIONAL_REGISTRATION_GHS_DISPLAY = Math.ceil(
@@ -101,6 +111,8 @@ async function fetchCourses() {
   program: "",
   course_id: "",
   nationality: "Ghana",
+  specific_course: "",
+  duration_preference: "",
 })
 
   // International track kicks in the moment nationality isn't Ghana. Drives the
@@ -110,6 +122,18 @@ async function fetchCourses() {
   const isInternational = basicInfo.nationality !== "" && basicInfo.nationality !== "Ghana"
 
   const eligibleCourses = courses
+
+  // Once a program is chosen, look up which department it belongs to (via
+  // the same mapping the programs page uses) and offer that department's
+  // real, specific courses — e.g. picking "Broadcast Journalism" surfaces
+  // Broadcast Journalism, Radio and TV Presenting, and Media Law as options.
+  const selectedProgramSlug = programs.find((p) => p.name === basicInfo.program)?.slug
+  const selectedDepartmentSlug = selectedProgramSlug ? PROGRAM_TO_DEPARTMENT[selectedProgramSlug] : null
+  const relevantCourses = selectedDepartmentSlug
+    ? departments.find((d) => d.slug === selectedDepartmentSlug)?.courses || []
+    : []
+
+  const DURATION_OPTIONS = ["6 Months Certificate", "1 Year Professional Certificate", "2 Year Diploma"]
 
  const [applicationForm, setApplicationForm] = useState({
   date_of_birth: "",
@@ -178,7 +202,7 @@ async function fetchCourses() {
     const refPrefix = isInternational ? "FPMI-INTL" : "FPMI"
     const paystackRef = `${refPrefix}-${Date.now().toString(36)}-${randomSuffix}`
 
-    const payAmount = isInternational ? INTERNATIONAL_REGISTRATION_GHS_PESEWAS : 20300
+    const payAmount = isInternational ? INTERNATIONAL_REGISTRATION_GHS_PESEWAS : DOMESTIC_REGISTRATION_GHS_PESEWAS
 
     const setupConfig = {
       key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
@@ -192,6 +216,9 @@ async function fetchCourses() {
           { display_name: "Program", variable_name: "program", value: basicInfo.program },
           { display_name: "Phone", variable_name: "phone", value: basicInfo.phone },
           { display_name: "Nationality", variable_name: "nationality", value: basicInfo.nationality },
+          { display_name: "Course ID", variable_name: "course_id", value: basicInfo.course_id },
+          { display_name: "Specific Course", variable_name: "specific_course", value: basicInfo.specific_course },
+          { display_name: "Duration Preference", variable_name: "duration_preference", value: basicInfo.duration_preference },
         ]
       },
       callback: function(response) {
@@ -215,6 +242,8 @@ async function fetchCourses() {
                 program_name: basicInfo.program,
                 amount: payAmount,
                 nationality: basicInfo.nationality,
+                specific_course: basicInfo.specific_course,
+                duration_preference: basicInfo.duration_preference,
               },
             ])
           } catch (err) {
@@ -274,6 +303,8 @@ async function fetchCourses() {
         program: record.program_name || "",
         course_id: record.course_id || "",
         nationality: record.nationality || "Ghana",
+        specific_course: record.specific_course || "",
+        duration_preference: record.duration_preference || "",
       })
       setReference(record.reference)
       setStep("form")
@@ -327,6 +358,8 @@ async function fetchCourses() {
           address: applicationForm.address,
           course_id: basicInfo.course_id,
           program_name: basicInfo.program,
+          specific_course: basicInfo.specific_course,
+          duration_preference: basicInfo.duration_preference,
           guardian_name: applicationForm.guardian_name,
           guardian_phone: applicationForm.guardian_phone,
           passport_photo_url: passportPhotoUrl,
@@ -423,7 +456,7 @@ async function fetchCourses() {
               ) : (
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
                   <p className="text-amber-700 text-sm font-semibold mb-1">💳 Payment Required</p>
-                  <p className="text-amber-600 text-sm">A non-refundable registration fee of <strong>GH¢ 203</strong> is required to access the application form. This prevents spam and ensures serious applicants only.</p>
+                  <p className="text-amber-600 text-sm">A non-refundable registration fee of <strong>GH¢ {DOMESTIC_REGISTRATION_GHS_DISPLAY}</strong> is required to access the application form. This prevents spam and ensures serious applicants only.</p>
                 </div>
               )}
 
@@ -469,6 +502,9 @@ async function fetchCourses() {
       ...prev,
       course_id: selectedCourse?.id || "",
       program: selectedCourse?.name || "",
+      // Which specific courses are relevant depends on the program picked —
+      // clear any stale selection from a different department.
+      specific_course: "",
     }))
   }}
   required
@@ -485,6 +521,36 @@ async function fetchCourses() {
     </option>
   ))}
 </select>
+                </div>
+                {relevantCourses.length > 0 && (
+                  <div>
+                    <label className="text-gray-500 text-sm mb-1 block">Specific Course of Interest</label>
+                    <select
+                      name="specific_course"
+                      value={basicInfo.specific_course}
+                      onChange={handleBasicChange}
+                      className="w-full bg-white border border-gray-200 text-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a0f5c]"
+                    >
+                      <option value="">Not sure yet — any course under {basicInfo.program}</option>
+                      {relevantCourses.map((course) => (
+                        <option key={course} value={course}>{course}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                <div>
+                  <label className="text-gray-500 text-sm mb-1 block">Duration Interested In</label>
+                  <select
+                    name="duration_preference"
+                    value={basicInfo.duration_preference}
+                    onChange={handleBasicChange}
+                    className="w-full bg-white border border-gray-200 text-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#0a0f5c]"
+                  >
+                    <option value="">Not sure yet</option>
+                    {DURATION_OPTIONS.map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
                 </div>
                 <button type="submit" className="w-full bg-[#1b3a4f] hover:bg-[#1d4a63] text-white font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
                   Proceed to Payment
@@ -591,7 +657,7 @@ async function fetchCourses() {
                 <div className="flex justify-between items-center pt-3 border-t border-gray-200">
                   <span className="text-gray-700 font-bold">Registration Fee</span>
                   <span className="text-[#0a0f5c] font-bold text-lg">
-                    {isInternational ? `$${INTERNATIONAL_REGISTRATION_USD}` : "GH¢ 203"}
+                    {isInternational ? `$${INTERNATIONAL_REGISTRATION_USD}` : `GH¢ ${DOMESTIC_REGISTRATION_GHS_DISPLAY}`}
                   </span>
                 </div>
                 {isInternational && (
@@ -609,7 +675,7 @@ async function fetchCourses() {
 
               <button onClick={handlePayWithPaystack} disabled={loading} className="w-full bg-[#f5c518] hover:bg-yellow-400 text-[#0a0f5c] font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50">
                 <CreditCard size={20} />
-                {loading ? "Processing..." : isInternational ? `Pay $${INTERNATIONAL_REGISTRATION_USD} Now` : "Pay GH¢ 203 Now"}
+                {loading ? "Processing..." : isInternational ? `Pay $${INTERNATIONAL_REGISTRATION_USD} Now` : `Pay GH¢ ${DOMESTIC_REGISTRATION_GHS_DISPLAY} Now`}
               </button>
 
               <button onClick={() => setStep("info")} className="w-full mt-3 border border-gray-200 text-gray-500 hover:bg-gray-50 font-medium px-6 py-3 rounded-xl transition-all text-sm">

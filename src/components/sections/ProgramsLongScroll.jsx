@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, Clock, Award, CheckCircle, ChevronRight, ChevronDown } from "lucide-react"
 import { programs } from "@/data/programs"
-import { departments, DEPARTMENT_ENTRY_REQUIREMENTS, DEPARTMENT_FEES } from "@/data/departments"
+import { departments, DEPARTMENT_ENTRY_REQUIREMENTS, DEPARTMENT_FEES, PROGRAM_TO_DEPARTMENT } from "@/data/departments"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -29,9 +29,9 @@ const FEES = [
     duration: "6 Months",
     tag: "Strictly Practical",
     items: [
-      { label: "Registration Form", value: "GH¢ 200" },
-      { label: "Admission Fee", value: "GH¢ 800" },
-      { label: "Tuition Fee", value: "GH¢ 2,500" },
+      { label: "Registration Form", value: "GH¢ 150" },
+      { label: "Admission Fee", value: "GH¢ 700" },
+      { label: "Tuition Fee", value: "GH¢ 2,400" },
     ],
     accent: "#00b4d8",
   },
@@ -40,9 +40,9 @@ const FEES = [
     duration: "1 Year",
     tag: "Most Popular",
     items: [
-      { label: "Registration Form", value: "GH¢ 200" },
-      { label: "Admission Fee", value: "GH¢ 800" },
-      { label: "Tuition (per semester)", value: "GH¢ 2,500" },
+      { label: "Registration Form", value: "GH¢ 150" },
+      { label: "Admission Fee", value: "GH¢ 700" },
+      { label: "Tuition (per semester)", value: "GH¢ 2,400" },
     ],
     accent: "#f5c518",
   },
@@ -51,9 +51,9 @@ const FEES = [
     duration: "2 Years",
     tag: "Advanced",
     items: [
-      { label: "Registration Form", value: "GH¢ 200" },
-      { label: "Admission Fee", value: "GH¢ 800" },
-      { label: "Tuition (per semester)", value: "GH¢ 2,500" },
+      { label: "Registration Form", value: "GH¢ 150" },
+      { label: "Admission Fee", value: "GH¢ 700" },
+      { label: "Tuition (per semester)", value: "GH¢ 2,400" },
     ],
     accent: "#22c55e",
   },
@@ -65,19 +65,6 @@ const ADMISSION = [
   "Mature students (25 years and above)",
   "Informal Education: applicants between ages 20–40",
 ]
-
-// Which department each flagship program (the public-facing 8) falls under —
-// used only to make the "at a glance" bulleted list jump to the right card.
-const PROGRAM_TO_DEPARTMENT = {
-  "broadcast-journalism": "journalism-and-media-studies",
-  "radio-tv-presenting": "journalism-and-media-studies",
-  "media-arts-production": "media-arts",
-  "graphic-design": "media-arts",
-  "film-video-editing": "media-arts",
-  "fashion-design": "fashion",
-  "cosmetology": "cosmetology",
-  "catering": "catering",
-}
 
 function SectionEyebrow({ children }) {
   return (

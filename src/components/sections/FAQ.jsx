@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     question: "How much does it cost to enroll?",
-    answer: "Fees vary by program. Generally, registration is GH¢ 100, admission is GH¢ 600 and tuition is GH¢ 1,980 per semester. International students pay in USD. Contact us for the full fee schedule for your chosen program."
+    answer: "Fees vary by program. Generally, registration is GH¢ 200, admission is GH¢ 800 and tuition is GH¢ 2,500 per semester. International students pay in USD. Contact us for the full fee schedule for your chosen program."
   },
   {
     question: "How long are the programs?",
