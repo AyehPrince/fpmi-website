@@ -1,21 +1,39 @@
-// src/components/layout/Navbar.jsx
 "use client"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ChevronDown } from "lucide-react"
 
-const navLinks = [
+// Grouped structure for the desktop nav — items with `children` render as a
+// hover dropdown instead of a flat link, cutting the number of top-level
+// slots from 9 down to 6. Mobile ignores the grouping entirely (see
+// flatNavLinks below) since a vertical list never had the crowding problem
+// a single horizontal row did.
+const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Courses", href: "/programs" },
-  { label: "Online Registration", href: "/apply" },
-  { label: "International", href: "/international" },
-  { label: "News", href: "/news" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "FAQ", href: "/faq" },
+  {
+    label: "Admissions",
+    children: [
+      { label: "Register Now", href: "/apply" },
+      { label: "International Students", href: "/international" },
+      { label: "FAQ", href: "/faq" },
+    ],
+  },
+  {
+    label: "Media",
+    children: [
+      { label: "News", href: "/news" },
+      { label: "Gallery", href: "/gallery" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ]
+
+// Mobile menu stays a simple flat list of all 9 destinations — flattened
+// from the same source above so it can never drift out of sync with it.
+const flatNavLinks = navItems.flatMap((item) => (item.children ? item.children : [item]))
 
 const SOCIAL = [
   {
@@ -63,6 +81,7 @@ const SOCIAL = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState(null)
   const pathname = usePathname()
   const isHome = pathname === "/"
 
@@ -103,20 +122,65 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <div className="hidden lg:flex items-center gap-5">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[#f5c518] relative whitespace-nowrap ${
-                transparent ? "text-white" : "text-[#1b3a4f]"
-              } ${pathname === link.href ? "text-[#f5c518]" : ""}`}
-            >
-              {link.label}
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#f5c518] transition-all duration-300 ${
-                pathname === link.href ? "w-full" : "w-0"
-              }`} />
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            if (item.children) {
+              const isActiveGroup = item.children.some((c) => c.href === pathname)
+              return (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={() => setOpenDropdown(item.label)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    type="button"
+                    className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-[#f5c518] whitespace-nowrap ${
+                      transparent ? "text-white" : "text-[#1b3a4f]"
+                    } ${isActiveGroup ? "text-[#f5c518]" : ""}`}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${openDropdown === item.label ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  {openDropdown === item.label && (
+                    <div className="absolute top-full left-0 pt-3 -ml-2">
+                      <div className="bg-white rounded-xl shadow-lg border border-gray-100 py-2 min-w-[210px]">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={`block px-4 py-2.5 text-sm whitespace-nowrap transition-colors hover:bg-gray-50 hover:text-[#f5c518] ${
+                              pathname === child.href ? "text-[#f5c518] font-semibold" : "text-[#1b3a4f]"
+                            }`}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )
+            }
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-sm font-medium transition-colors hover:text-[#f5c518] relative whitespace-nowrap ${
+                  transparent ? "text-white" : "text-[#1b3a4f]"
+                } ${pathname === item.href ? "text-[#f5c518]" : ""}`}
+              >
+                {item.label}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#f5c518] transition-all duration-300 ${
+                  pathname === item.href ? "w-full" : "w-0"
+                }`} />
+              </Link>
+            )
+          })}
         </div>
 
         {/* Desktop right — social + buttons */}
@@ -173,10 +237,10 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — flat list of all 9 destinations, grouping is desktop-only */}
       {menuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-6 py-4 space-y-1 shadow-lg">
-          {navLinks.map((link) => (
+          {flatNavLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
