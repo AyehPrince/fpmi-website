@@ -565,9 +565,9 @@ async function fetchCourses() {
                   Visit our campus
                 </Link>
               </p>
-              <p className="text-gray-400 text-sm">Already paid via Mobile Money?{" "}
-                <Link href="/momo-admission" className="text-[#0a0f5c] font-semibold hover:text-[#f5c518] transition-colors">
-                  Fill out the admission form
+              <p className="text-gray-400 text-sm">Already registered with us another way?{" "}
+                <Link href="/online_form1" className="text-[#0a0f5c] font-semibold hover:text-[#f5c518] transition-colors">
+                  Complete your admission form
                 </Link>
               </p>
             </div>

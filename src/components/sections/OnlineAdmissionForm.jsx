@@ -70,7 +70,7 @@ const initialState = {
   permanent_address: "",
 }
 
-export default function MomoAdmissionForm() {
+export default function OnlineAdmissionForm() {
   const [form, setForm] = useState(initialState)
   const [courseId, setCourseId] = useState("")
   const [studentPhoto, setStudentPhoto] = useState(null)
@@ -137,7 +137,7 @@ export default function MomoAdmissionForm() {
         documentUrl = supabase.storage.from("admission-documents").getPublicUrl(fileName).data.publicUrl
       }
 
-      const ref = `MOMO-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+      const ref = `ADM-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
 
       const { error: insertError } = await supabase.from("applications").insert([
         {
@@ -219,14 +219,13 @@ export default function MomoAdmissionForm() {
       <div style={{ backgroundColor: "#1b3a4f" }} className="py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">Online Admission Form</h1>
-          <p className="text-white/60">For applicants who have already paid their registration fee locally via Mobile Money</p>
         </div>
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-12">
         <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8">
           <p className="text-amber-700 text-sm">
-            This form is only for applicants who have already paid their registration fee directly to FPMI's Mobile Money number. Please fill it in correctly and take note of your reference number after submitting.
+            Please fill in your details accurately and take note of your reference number after submitting.
           </p>
         </div>
 
